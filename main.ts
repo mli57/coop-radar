@@ -41,7 +41,13 @@ async function monitorCompany(
   company: Company,
   recipe: Recipe | undefined
 ): Promise<{ fresh: Posting[]; warning?: string }> {
-  if (!recipe) recipe = await bootstrapCompany(company.name, company.url);
+  // Companies with no recipe yet are NOT bootstrapped here
+  // This is to avoid 30-min run re-attempts on every company that failed the process
+  // Only a recipe that USED to work gets auto-healed below. 
+  // Run `main.ts --bootstrap <company>` manually to add new ones.
+  if (!recipe) {
+    return { fresh: [], warning: `${company.name}: no recipe yet, skipped (run --bootstrap)` };
+  }
 
   let current: Posting[];
   try {
