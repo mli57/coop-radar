@@ -1,0 +1,85 @@
+# Tier 1: AI-native companies and labs (Toronto/Waterloo) — highest priority,
+# smaller intake, rolling review. This is where the radar earns its keep.
+# Tier 2: Strong eng employers with ML exposure and real co-op volume.
+# Tier 3: Big tech — scraping these is hard and low-value; apply via their
+#   official intern pages / job alert emails instead. Included for completeness.
+#
+# URLs are best-known careers pages. Bootstrap mode visits each one, so a
+# stale URL will fail loudly on first run — fix as flagged.
+
+companies:
+  # ---- Tier 1: AI-native ----
+  - name: Cohere
+    url: https://jobs.ashbyhq.com/cohere
+  - name: Waabi
+    url: https://waabi.ai/careers
+  - name: Tenstorrent
+    url: https://tenstorrent.com/careers
+  - name: Ada
+    url: https://www.ada.cx/careers
+  - name: Xanadu
+    url: https://xanadu.ai/careers
+  - name: Borealis AI (RBC)
+    url: https://www.borealisai.com/careers
+  - name: Layer 6 (TD)
+    url: https://layer6.ai/careers
+  - name: Deep Genomics
+    url: https://www.deepgenomics.com/careers
+  - name: Vector Institute
+    url: https://vectorinstitute.ai/careers
+  - name: Signal 1
+    url: https://signal1.ai/careers
+  - name: Ideogram        # verify URL — small company, few intern roles
+    url: https://ideogram.ai/careers
+  - name: Huawei Noah's Ark Lab   # verify URL — Canada research jobs are on a separate portal
+    url: https://www.huawei.com/ca/en/career
+
+  # ---- Tier 2: strong eng + ML exposure, real co-op volume ----
+  - name: Shopify
+    url: https://www.shopify.com/careers
+  - name: Wealthsimple
+    url: https://www.wealthsimple.com/en-ca/careers
+  - name: Faire
+    url: https://www.faire.com/careers
+  - name: Super.com
+    url: https://www.super.com/careers
+  - name: Index Exchange
+    url: https://www.indexexchange.com/careers
+  - name: 1Password
+    url: https://www.1password.com/careers
+  - name: Geotab
+    url: https://www.geotab.com/careers
+  - name: AMD Markham
+    url: https://careers.amd.com
+  - name: Qualcomm Markham
+    url: https://careers.qualcomm.com
+  - name: GM Canadian Technical Centre
+    url: https://search-careers.gm.com
+  - name: D2L
+    url: https://www.d2l.com/careers
+  - name: Vidyard
+    url: https://www.vidyard.com/careers
+  - name: Miovision
+    url: https://miovision.com/careers
+  - name: Magnet Forensics
+    url: https://www.magnetforensics.com/careers
+  - name: Arctic Wolf
+    url: https://arcticwolf.com/careers
+  - name: theScore        # verify URL — now under PENN Entertainment
+    url: https://www.thescore.com/careers
+  - name: Snowflake Toronto
+    url: https://careers.snowflake.com
+
+  # ---- Tier 3: big tech — apply directly, don't rely on scraper ----
+  - name: Google Canada
+    url: https://www.google.com/about/careers/applications/jobs/results
+  - name: Amazon Toronto
+    url: https://www.amazon.jobs
+  - name: Uber Toronto
+    url: https://www.uber.com/us/en/careers
+  - name: NVIDIA Toronto
+    url: https://www.nvidia.com/en-us/about-nvidia/careers
+  - name: Pinterest Toronto
+    url: https://www.pinterestcareers.com
+  - name: Instacart Toronto
+    url: https://instacart.careers

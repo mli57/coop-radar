@@ -1,0 +1,55 @@
+name: monitor
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch: # manual "Run workflow" button for testing
+
+# Never let two runs overlap to prevent race on the snapshot commit.
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+permissions:
+  contents: write # to push updated snapshots
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Run monitor
+        env:
+          BRIEF_WEBHOOK_URL: ${{ secrets.BRIEF_WEBHOOK_URL }}
+          ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npx tsx main.ts --monitor
+
+      # Snapshots are the diff baseline — commit them back or every run
+      # looks like a first run and nothing ever alerts.
+      - name: Persist snapshots
+        run: |
+          git config user.name "coop-radar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/snapshots config/recipes.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update snapshots"
+            git push
+          fi
