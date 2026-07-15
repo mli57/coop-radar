@@ -69,5 +69,40 @@
   "Pinterest Toronto": {
     "type": "greenhouse",
     "token": "pinterest"
+  },
+  "Xanadu": {
+    "type": "css",
+    "url": "https://xanadu.ai/careers/",
+    "selector": "a[href*=\"applytojob.com\"]"
+  },
+  "Borealis AI (RBC)": {
+    "type": "css",
+    "url": "https://rbcborealis.com/careers/",
+    "selector": "#student-programs + div ul > li > div > a"
+  },
+  "Vector Institute": {
+    "type": "css",
+    "url": "https://vectorinstitute.ai/about/careers/",
+    "selector": "a.button-link"
+  },
+  "D2L": {
+    "type": "css",
+    "url": "https://www.d2l.com/careers/",
+    "selector": ".browse-list > li"
+  },
+  "Qualcomm Markham": {
+    "type": "css",
+    "url": "https://careers.qualcomm.com/careers?start=0&pid=446716674429&sort_by=timestamp",
+    "selector": "[data-test-id='job-listing'] > a"
+  },
+  "theScore": {
+    "type": "css",
+    "url": "https://www.thescore.com/careers/news",
+    "selector": "a[href*='/careers/']"
+  },
+  "Amazon Toronto": {
+    "type": "css",
+    "url": "https://www.amazon.jobs/en/",
+    "selector": ".card"
   }
 }
