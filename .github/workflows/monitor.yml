@@ -2,7 +2,7 @@ name: monitor
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "7,37 * * * *" # test
   workflow_dispatch: # manual "Run workflow" button for testing
 
 # Never let two runs overlap to prevent race on the snapshot commit.
