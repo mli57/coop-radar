@@ -4,8 +4,9 @@
     "token": "cohere"
   },
   "Waabi": {
-    "type": "lever",
-    "token": "waabi"
+    "type": "css",
+    "url": "https://waabi.ai/careers",
+    "selector": "a[href*=\"lever.co\"]"
   },
   "Tenstorrent": {
     "type": "greenhouse",
