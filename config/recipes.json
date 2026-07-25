@@ -12,8 +12,9 @@
     "token": "tenstorrent"
   },
   "Deep Genomics": {
-    "type": "lever",
-    "token": "deepgenomics"
+    "type": "css",
+    "url": "https://www.deepgenomics.com/careers/",
+    "selector": "a[href*=\"jobs.lever.co\"]"
   },
   "1Password": {
     "type": "ashby",
