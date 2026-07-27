@@ -75,5 +75,127 @@
     "type": "css",
     "url": "https://careers.qualcomm.com/careers?start=0&pid=446716674429&sort_by=timestamp",
     "selector": "[data-test-id='job-listing'] > a"
+  },
+  "Xanadu": {
+    "type": "css",
+    "url": "https://xanadu.applytojob.com/apply",
+    "selector": ".list-group-item:has(a[href*='/apply/'])"
+  },
+  "Ada": {
+    "type": "greenhouse",
+    "token": "ada18"
+  },
+  "Super.com": {
+    "type": "ashby",
+    "token": "super.com"
+  },
+  "theScore": {
+    "type": "greenhouse",
+    "token": "penninteractive"
+  },
+  "TD": {
+    "type": "workday",
+    "tenant": "td",
+    "wdInstance": "wd3",
+    "site": "TD_Bank_Careers",
+    "appliedFacets": {
+      "jobFamilyGroup": [
+        "de769652963501f2001247b507040dac",
+        "a744730d4e001001a147acd3cdc10000"
+      ],
+      "locationCountry": [
+        "a30a87ed25634629aa6c3958aa2b91ea"
+      ]
+    }
+  },
+  "Arctic Wolf": {
+    "type": "workday",
+    "tenant": "arcticwolf",
+    "wdInstance": "wd1",
+    "site": "External"
+  },
+  "Huawei": {
+    "type": "recruitee",
+    "subdomain": "huaweicanada",
+    "cityFilter": [
+      "Markham",
+      "Waterloo"
+    ]
+  },
+  "D2L": {
+    "type": "greenhouse",
+    "token": "d2l"
+  },
+  "Airbnb": {
+    "type": "greenhouse",
+    "token": "airbnb"
+  },
+  "Doordash": {
+    "type": "greenhouse",
+    "token": "doordashusa"
+  },
+  "Robinhood": {
+    "type": "greenhouse",
+    "token": "robinhood"
+  },
+  "Coinbase": {
+    "type": "greenhouse",
+    "token": "coinbase"
+  },
+  "Stripe": {
+    "type": "greenhouse",
+    "token": "stripe"
+  },
+  "Figma": {
+    "type": "greenhouse",
+    "token": "figma"
+  },
+  "Duolingo": {
+    "type": "greenhouse",
+    "token": "duolingo"
+  },
+  "PagerDuty": {
+    "type": "greenhouse",
+    "token": "pagerduty"
+  },
+  "Reddit": {
+    "type": "greenhouse",
+    "token": "reddit"
+  },
+  "Peloton": {
+    "type": "greenhouse",
+    "token": "peloton"
+  },
+  "Asana": {
+    "type": "greenhouse",
+    "token": "asana"
+  },
+  "Affirm": {
+    "type": "greenhouse",
+    "token": "affirm"
+  },
+  "Chime": {
+    "type": "greenhouse",
+    "token": "chime"
+  },
+  "Lyft": {
+    "type": "greenhouse",
+    "token": "lyft"
+  },
+  "Airtable": {
+    "type": "greenhouse",
+    "token": "airtable"
+  },
+  "Brex": {
+    "type": "greenhouse",
+    "token": "brex"
+  },
+  "Netlify": {
+    "type": "greenhouse",
+    "token": "netlify"
+  },
+  "Vercel": {
+    "type": "greenhouse",
+    "token": "vercel"
   }
 }

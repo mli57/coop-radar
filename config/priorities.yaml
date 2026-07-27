@@ -7,12 +7,12 @@ priority_companies:
   - Ada
   - Xanadu
   - Borealis AI (RBC)
-  - Layer 6 (TD)
+  - TD
   - Deep Genomics
   - Vector Institute
   - Signal 1
   - Ideogram
-  - Huawei Noah's Ark Lab
+  - Huawei
 
 # NOTE: match these with word boundaries in code (e.g. \bML\b), not substring
 # otherwise "ML" matches "HTML" and "AI" matches "maintain".
