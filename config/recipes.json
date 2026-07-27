@@ -94,33 +94,19 @@
     "token": "penninteractive"
   },
   "TD": {
-    "type": "workday",
-    "tenant": "td",
-    "wdInstance": "wd3",
-    "site": "TD_Bank_Careers",
-    "appliedFacets": {
-      "jobFamilyGroup": [
-        "de769652963501f2001247b507040dac",
-        "a744730d4e001001a147acd3cdc10000"
-      ],
-      "locationCountry": [
-        "a30a87ed25634629aa6c3958aa2b91ea"
-      ]
-    }
+    "type": "css",
+    "url": "https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Arctic Wolf": {
-    "type": "workday",
-    "tenant": "arcticwolf",
-    "wdInstance": "wd1",
-    "site": "External"
+    "type": "css",
+    "url": "https://arcticwolf.wd1.myworkdayjobs.com/External",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Huawei": {
-    "type": "recruitee",
-    "subdomain": "huaweicanada",
-    "cityFilter": [
-      "Markham",
-      "Waterloo"
-    ]
+    "type": "css",
+    "url": "https://huaweicanada.recruitee.com/?jobs-7d390cc9%5Bcity%5D%5B%5D=Markham&jobs-7d390cc9%5Bcity%5D%5B%5D=Waterloo",
+    "selector": "a[href*=\"/o/\"]"
   },
   "D2L": {
     "type": "greenhouse",
