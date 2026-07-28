@@ -14,7 +14,7 @@ only bothers you about what's actually new.
 
 ## How it works
 
-- **Recipes** (`config/recipes.json`) describe how to pull postings from one company. Most companies rent their job board from a platform (Ashby, Greenhouse, Lever, Workday, Recruitee) that exposes the listings as a queryable API, and no browser needed. Companies that built their own board fall back to a `css` recipe, which drives a headless browser against the rendered page instead.
+- **Recipes** (`config/recipes.json`) describe how to pull postings from one company. Most companies rent their job board from a platform (Ashby, Greenhouse, Lever, Workday, Recruitee) that exposes the listings as a queryable API, and no browser needed. Companies that built their own board fall back to a `css` recipe generated with the help of an LLM, which drives a headless browser against the rendered page instead.
 - **Bootstrapping** (`src/agent.ts`) figures out a new company's recipe automatically, and re-runs itself if a previously-working recipe stops returning results (the board likely changed shape).
 - **Diffing** (`src/differ.ts`) saves a snapshot of each company's postings after every run and compares against it next time, so only postings that are actually new get reported.
 - **Notifying** (`src/notifier.ts`) sends a summary of every new posting to Discord, plus an immediate `@here` alert for postings at companies/titles marked high priority in `config/priorities.yaml`.
