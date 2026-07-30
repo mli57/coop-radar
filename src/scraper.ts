@@ -120,19 +120,18 @@ async function scrapeCss(company: string, url: string, selector: string): Promis
     await page.waitForSelector(selector, { timeout: 15_000 }); // postings may render after page load via JS
     return await page.$$eval(
       selector,
-      // runs inside the browser page(not node), exists as nested function since it can't reach outside code
-      function extractPostings(postingElements, company) {
-        // converts one matched element into 0 or 1 postings
-        function toPosting(postingElement: Element): Posting[] {
+      // runs inside the browser page, not Node. Must stay one inline anonymous function: pulling
+      // the per-element logic into its own named const breaks at runtime (esbuild wraps named
+      // functions with a helper for stack traces that Playwright doesn't ship into the browser).
+      (postingElements, company) =>
+        postingElements.flatMap((postingElement) => {
           // postingElement may be the <a> itself, or a card div wrapping one
           const link = postingElement.matches("a[href]") ? postingElement : postingElement.querySelector("a[href]");
           const title = (link?.textContent ?? postingElement.textContent ?? "").trim();
           const href = link?.getAttribute("href");
           if (!title || !href) return []; // drop entries w/o title or href
           return [{ company, title, url: new URL(href, location.href).href }]; // href may be relative
-        }
-        return postingElements.flatMap(toPosting);
-      },
+        }),
       company
     );
   } 
