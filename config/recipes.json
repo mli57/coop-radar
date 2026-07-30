@@ -78,7 +78,7 @@
   "Xanadu": {
     "type": "css",
     "url": "https://xanadu.applytojob.com/apply",
-    "selector": ".list-group-item:has(a[href*='/apply/'])"
+    "selector": "a"
   },
   "Ada": {
     "type": "greenhouse",
