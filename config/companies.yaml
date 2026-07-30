@@ -1,100 +1,48 @@
-# Tier 1: AI-native companies and labs (Toronto/Waterloo) — highest priority,
-# smaller intake, rolling review. This is where the radar earns its keep.
-# Tier 2: Strong eng employers with ML exposure and real co-op volume.
-# Tier 3: Big tech, scraping these is hard and low-value; apply via their
-#   official intern pages / job alert emails instead. Included for completeness.
+# Grouped by which ATS actually scrapes them 
+# (see config/recipes.json for the live recipe/type per company. this file only decides what gets bootstrapped, 
+# not how it's scraped).
 #
-# URLs are best-known careers pages. Bootstrap mode visits each one, so a
-# stale URL will fail loudly on first run — fix as flagged.
+# URLs are the likely links to the careers pages(not verified). Running --bootstrap on a
+# company prints an error if its URL is dead or unreachable; fix the URL when that happens.
 
 companies:
-  # Tier 1: AI-native
+  # Ashby
   - name: Cohere
     url: https://jobs.ashbyhq.com/cohere
-  - name: Waabi
-    url: https://waabi.ai/careers
-  - name: Tenstorrent
-    url: https://tenstorrent.com/careers
-  - name: Ada
-    url: https://job-boards.greenhouse.io/ada18
-  - name: Xanadu
-    url: https://xanadu.applytojob.com/apply
-  - name: Borealis AI (RBC)
-    url: https://jobs.rbc.com/ca/en/rbc-borealis
-  - name: TD   # broadened from Layer 6-only to all TD tech/AI roles in Canada
-    url: https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers
-  - name: Deep Genomics
-    url: https://www.deepgenomics.com/careers
-  - name: Vector Institute   # NOT monitored, internship program not currently open, per user
-    url: https://vectorinstitute.ai/research-talent/students/applied-ai-internships/
-  - name: Signal 1
-    url: https://signal1.ai/careers
-  - name: Ideogram        # verify URL, small company, few intern roles
-    url: https://ideogram.ai/careers
-  - name: Huawei
-    url: https://huaweicanada.recruitee.com/?jobs-7d390cc9%5Bcity%5D%5B%5D=Markham&jobs-7d390cc9%5Bcity%5D%5B%5D=Waterloo
-
-  # Tier 2: strong eng + ML exposure, real co-op volume
-  - name: Shopify
-    url: https://www.shopify.com/careers
-  - name: Wealthsimple
-    url: https://www.wealthsimple.com/en-ca/careers
-  - name: Faire
-    url: https://www.faire.com/careers
-  - name: Super.com
-    url: https://jobs.ashbyhq.com/super.com
-  - name: Index Exchange
-    url: https://www.indexexchange.com/careers
   - name: 1Password
     url: https://www.1password.com/careers
-  - name: Geotab
-    url: https://www.geotab.com/careers
-  - name: AMD Markham   # NOT monitored, Workday board sits behind a login wall
-    url: https://careers.amd.com
-  - name: Qualcomm Markham
-    url: https://careers.qualcomm.com
-  - name: GM Canadian Technical Centre   # NOT monitored,  must apply through Workday login
-    url: https://search-careers.gm.com
-  - name: D2L
-    url: https://www.d2l.com/careers/early-talent/jobs/
-  - name: Vidyard
-    url: https://www.vidyard.com/careers
   - name: Miovision
     url: https://miovision.com/careers
-  - name: Magnet Forensics
-    url: https://www.magnetforensics.com/careers
-  - name: Arctic Wolf
-    url: https://arcticwolf.wd1.myworkdayjobs.com/External
-  - name: theScore
-    url: https://job-boards.greenhouse.io/penninteractive
+  - name: Ideogram        # verify URL, small company, few intern roles
+    url: https://ideogram.ai/careers
+  - name: Wealthsimple
+    url: https://www.wealthsimple.com/en-ca/careers
   - name: Snowflake Toronto
     url: https://careers.snowflake.com
+  - name: Super.com
+    url: https://jobs.ashbyhq.com/super.com
 
-  # Tier 3: big tech. Apply directly, don't rely on scraper
-  - name: Google Canada
-    url: https://www.google.com/about/careers/applications/jobs/results
-  - name: Amazon Toronto
-    url: https://www.amazon.jobs
-  - name: Uber Toronto
-    url: https://jobs.uber.com/en/jobs/?location=Toronto&radius=100
-  - name: NVIDIA Toronto
-    url: https://www.nvidia.com/en-us/about-nvidia/careers
-  - name: Pinterest Toronto
-    url: https://www.pinterestcareers.com/jobs/?orderby=0&pagesize=20&page=1&radius=100&team=University
+  # Greenhouse
+  - name: Tenstorrent
+    url: https://tenstorrent.com/careers
+  - name: Faire
+    url: https://www.faire.com/careers
+  - name: Geotab
+    url: https://www.geotab.com/careers
   - name: Instacart Toronto
     url: https://www.instacart.careers/en-ca/current-openings
-  - name: Tesla
-    url: https://www.tesla.com/careers/search/?type=intern&region=5
-  - name: ByteDance
-    url: https://jobs.bytedance.com/en/position?type=3
-  - name: TikTok
-    url: https://lifeattiktok.com/search?recruitment_id_list=202%2C301&job_category_id_list=&location_code_list=CT_100762%2CCT_100764%2CCT_100747%2CCT_101443%2CCT_104%2CCT_148%2CCT_1103348%2CCT_242%2CCT_233%2CCT_157%2CCT_75%2CCT_114%2CCT_1103355%2CCT_203%2CCT_223%2CCT_221&subject_id_list=7322364514224687370%2C7322364513776093449%2C7459987887569733896%2C7459986622530078983%2C7602165701485299973%2C7602165694713678133%2C7391494724038953254&keyword=Summer&limit=12&offset=0
+  - name: Pinterest Toronto
+    url: https://www.pinterestcareers.com/jobs/?orderby=0&pagesize=20&page=1&radius=100&team=University
+  - name: Ada
+    url: https://job-boards.greenhouse.io/ada18
+  - name: theScore
+    url: https://job-boards.greenhouse.io/penninteractive
+  - name: D2L
+    url: https://www.d2l.com/careers/early-talent/jobs/
   - name: Airbnb
     url: https://careers.airbnb.com/positions/?_departments=early-career-program-intern
   - name: Doordash
     url: https://job-boards.greenhouse.io/doordashusa
-
-  # Greenhouse boards, tokens hand-verified against boards-api
   - name: Robinhood
     url: https://job-boards.greenhouse.io/robinhood
   - name: Coinbase
@@ -127,3 +75,57 @@ companies:
     url: https://job-boards.greenhouse.io/netlify
   - name: Vercel
     url: https://job-boards.greenhouse.io/vercel
+
+  # Lever
+  - name: Waabi
+    url: https://waabi.ai/careers
+  - name: Magnet Forensics
+    url: https://www.magnetforensics.com/careers
+
+  # Custom (css): proprietary careers pages, no public ATS API
+  - name: Deep Genomics
+    url: https://www.deepgenomics.com/careers
+  - name: Signal 1
+    url: https://signal1.ai/careers
+  - name: Shopify
+    url: https://www.shopify.com/careers
+  - name: Index Exchange
+    url: https://www.indexexchange.com/careers
+  - name: Qualcomm Markham
+    url: https://careers.qualcomm.com
+  - name: Xanadu
+    url: https://xanadu.applytojob.com/apply
+  - name: TD
+    url: https://td.wd3.myworkdayjobs.com/en-US/TD_Bank_Careers
+  - name: Arctic Wolf
+    url: https://arcticwolf.wd1.myworkdayjobs.com/External
+  - name: Huawei
+    url: https://huaweicanada.recruitee.com/?jobs-7d390cc9%5Bcity%5D%5B%5D=Markham&jobs-7d390cc9%5Bcity%5D%5B%5D=Waterloo
+
+  # Not yet bootstrapped: no working recipe in recipes.json yet
+  - name: Borealis AI (RBC)
+    url: https://jobs.rbc.com/ca/en/rbc-borealis
+  - name: Vidyard
+    url: https://www.vidyard.com/careers
+
+  # Manual application only: big tech / login-gated boards, not scraped
+  - name: Google Canada
+    url: https://www.google.com/about/careers/applications/jobs/results
+  - name: Amazon Toronto
+    url: https://www.amazon.jobs
+  - name: Uber Toronto
+    url: https://jobs.uber.com/en/jobs/?location=Toronto&radius=100
+  - name: NVIDIA Toronto
+    url: https://www.nvidia.com/en-us/about-nvidia/careers
+  - name: Tesla
+    url: https://www.tesla.com/careers/search/?type=intern&region=5
+  - name: ByteDance
+    url: https://jobs.bytedance.com/en/position?type=3
+  - name: TikTok
+    url: https://lifeattiktok.com/search?recruitment_id_list=202%2C301&job_category_id_list=&location_code_list=CT_100762%2CCT_100764%2CCT_100747%2CCT_101443%2CCT_104%2CCT_148%2CCT_1103348%2CCT_242%2CCT_233%2CCT_157%2CCT_75%2CCT_114%2CCT_1103355%2CCT_203%2CCT_223%2CCT_221&subject_id_list=7322364514224687370%2C7322364513776093449%2C7459987887569733896%2C7459986622530078983%2C7602165701485299973%2C7602165694713678133%2C7391494724038953254&keyword=Summer&limit=12&offset=0
+  - name: AMD Markham   # NOT monitored, job board sits behind a login wall
+    url: https://careers.amd.com
+  - name: GM Canadian Technical Centre   # NOT monitored, must apply through Workday login
+    url: https://search-careers.gm.com
+  - name: Vector Institute   # NOT monitored, internship program not currently open, per user
+    url: https://vectorinstitute.ai/research-talent/students/applied-ai-internships/
