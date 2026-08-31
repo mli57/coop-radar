@@ -108,8 +108,9 @@
     "selector": "a[href*=\"/o/\"]"
   },
   "D2L": {
-    "type": "greenhouse",
-    "token": "d2l"
+    "type": "css",
+    "url": "https://www.d2l.com/careers/early-talent/jobs/",
+    "selector": ".career-listing > li"
   },
   "Airbnb": {
     "type": "greenhouse",
