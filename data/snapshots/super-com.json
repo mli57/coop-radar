@@ -1,8 +1,32 @@
 [
   {
     "company": "Super.com",
+    "title": "Software Engineering Intern - Security",
+    "url": "https://jobs.ashbyhq.com/super.com/533f2314-39b0-48c6-a6c2-226242a7d608",
+    "location": "Canada"
+  },
+  {
+    "company": "Super.com",
+    "title": "Software Engineering Intern - Platform (12 months)",
+    "url": "https://jobs.ashbyhq.com/super.com/29751d58-eacc-4b5a-8e9d-e59cb7a595c7",
+    "location": "Canada"
+  },
+  {
+    "company": "Super.com",
+    "title": "Data Analytics Intern",
+    "url": "https://jobs.ashbyhq.com/super.com/68809622-6599-4379-bb88-925b2d8fcfd9",
+    "location": "Canada"
+  },
+  {
+    "company": "Super.com",
     "title": "Software Engineering Intern (Full-Stack)",
     "url": "https://jobs.ashbyhq.com/super.com/b2615f7e-c6d2-46d6-9699-5027da9b5757",
+    "location": "Canada"
+  },
+  {
+    "company": "Super.com",
+    "title": "Software Engineering Intern - Infrastructure (DevOps)",
+    "url": "https://jobs.ashbyhq.com/super.com/97bd1ee5-1b97-496b-836c-453d105f0eb3",
     "location": "Canada"
   }
 ]
