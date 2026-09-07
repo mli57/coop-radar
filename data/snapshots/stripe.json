@@ -2,12 +2,6 @@
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8031833",
-    "location": "Bengaluru"
-  },
-  {
-    "company": "Stripe",
-    "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8130883",
     "location": "Singapore"
   },
@@ -19,15 +13,15 @@
   },
   {
     "company": "Stripe",
-    "title": "Software Engineer, Intern ",
-    "url": "https://stripe.com/jobs/search?gh_jid=8130807",
-    "location": "Bucharest"
+    "title": "Software Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8031833",
+    "location": "Bengaluru"
   },
   {
     "company": "Stripe",
-    "title": "Software Engineer, Intern (Summer or Winter)",
-    "url": "https://stripe.com/jobs/search?gh_jid=8097801",
-    "location": "Dublin"
+    "title": "Software Engineer, Intern ",
+    "url": "https://stripe.com/jobs/search?gh_jid=8130807",
+    "location": "Bucharest"
   },
   {
     "company": "Stripe",
@@ -40,5 +34,11 @@
     "title": "Software Engineer, Intern (Summer or Winter)",
     "url": "https://stripe.com/jobs/search?gh_jid=8130805",
     "location": "Toronto"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern (Summer or Winter)",
+    "url": "https://stripe.com/jobs/search?gh_jid=8097801",
+    "location": "Dublin"
   }
 ]
