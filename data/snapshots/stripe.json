@@ -2,12 +2,6 @@
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8130867",
-    "location": "London"
-  },
-  {
-    "company": "Stripe",
-    "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8031833",
     "location": "Bengaluru"
   },
@@ -16,6 +10,12 @@
     "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8130883",
     "location": "Singapore"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8130867",
+    "location": "London"
   },
   {
     "company": "Stripe",
