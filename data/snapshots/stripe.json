@@ -2,6 +2,12 @@
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8130867",
+    "location": "London"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8031833",
     "location": "Bengaluru"
   },
@@ -13,21 +19,9 @@
   },
   {
     "company": "Stripe",
-    "title": "Software Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8130867",
-    "location": "London"
-  },
-  {
-    "company": "Stripe",
     "title": "Software Engineer, Intern ",
     "url": "https://stripe.com/jobs/search?gh_jid=8130807",
     "location": "Bucharest"
-  },
-  {
-    "company": "Stripe",
-    "title": "Software Engineer, Intern (Summer or Winter)",
-    "url": "https://stripe.com/jobs/search?gh_jid=8128745",
-    "location": "San Francisco, Seattle, New York City"
   },
   {
     "company": "Stripe",
@@ -40,5 +34,11 @@
     "title": "Software Engineer, Intern (Summer or Winter)",
     "url": "https://stripe.com/jobs/search?gh_jid=8130805",
     "location": "Toronto"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern (Summer or Winter)",
+    "url": "https://stripe.com/jobs/search?gh_jid=8128745",
+    "location": "San Francisco, Seattle, New York City"
   }
 ]
