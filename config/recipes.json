@@ -30,7 +30,7 @@
   "Signal 1": {
     "type": "css",
     "url": "https://signal1.ai/careers/",
-    "selector": ".BambooHR-ATS-Jobs-Item a"
+    "selector": ".BambooHR-ATS-Jobs-Item"
   },
   "Shopify": {
     "type": "css",
