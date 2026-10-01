@@ -1,6 +1,18 @@
 [
   {
     "company": "Stripe",
+    "title": "Data Analyst, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8194287",
+    "location": "Toronto"
+  },
+  {
+    "company": "Stripe",
+    "title": "Data Analyst, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8194291",
+    "location": "New York, Seattle, South San Francisco HQ"
+  },
+  {
+    "company": "Stripe",
     "title": "Financial Data Analyst Intern, Technical Operations",
     "url": "https://stripe.com/jobs/search?gh_jid=8186442",
     "location": "Singapore"
@@ -19,6 +31,24 @@
   },
   {
     "company": "Stripe",
+    "title": "PhD Data Scientist, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8194283",
+    "location": "New York, Seattle, South San Francisco HQ"
+  },
+  {
+    "company": "Stripe",
+    "title": "PhD Data Scientist, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8194285",
+    "location": "Toronto"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8031833",
+    "location": "Bengaluru"
+  },
+  {
+    "company": "Stripe",
     "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8130867",
     "location": "London"
@@ -28,12 +58,6 @@
     "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8130883",
     "location": "Singapore"
-  },
-  {
-    "company": "Stripe",
-    "title": "Software Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8031833",
-    "location": "Bengaluru"
   },
   {
     "company": "Stripe",
@@ -50,13 +74,13 @@
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern (Summer or Winter)",
-    "url": "https://stripe.com/jobs/search?gh_jid=8097801",
-    "location": "Dublin"
+    "url": "https://stripe.com/jobs/search?gh_jid=8130805",
+    "location": "Toronto"
   },
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern (Summer or Winter)",
-    "url": "https://stripe.com/jobs/search?gh_jid=8130805",
-    "location": "Toronto"
+    "url": "https://stripe.com/jobs/search?gh_jid=8097801",
+    "location": "Dublin"
   }
 ]
