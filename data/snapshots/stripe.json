@@ -32,14 +32,14 @@
   {
     "company": "Stripe",
     "title": "PhD Data Scientist, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8194283",
-    "location": "New York, Seattle, South San Francisco HQ"
+    "url": "https://stripe.com/jobs/search?gh_jid=8194285",
+    "location": "Toronto"
   },
   {
     "company": "Stripe",
     "title": "PhD Data Scientist, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8194285",
-    "location": "Toronto"
+    "url": "https://stripe.com/jobs/search?gh_jid=8194283",
+    "location": "New York, Seattle, South San Francisco HQ"
   },
   {
     "company": "Stripe",
@@ -68,12 +68,6 @@
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern (Summer or Winter)",
-    "url": "https://stripe.com/jobs/search?gh_jid=8128745",
-    "location": "San Francisco, Seattle, New York City"
-  },
-  {
-    "company": "Stripe",
-    "title": "Software Engineer, Intern (Summer or Winter)",
     "url": "https://stripe.com/jobs/search?gh_jid=8130805",
     "location": "Toronto"
   },
@@ -82,5 +76,11 @@
     "title": "Software Engineer, Intern (Summer or Winter)",
     "url": "https://stripe.com/jobs/search?gh_jid=8097801",
     "location": "Dublin"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern (Summer or Winter)",
+    "url": "https://stripe.com/jobs/search?gh_jid=8128745",
+    "location": "San Francisco, Seattle, New York City"
   }
 ]
