@@ -48,7 +48,7 @@ jobs:
         run: |
           git config user.name "coop-radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/snapshots config/recipes.json
+          git add data/snapshots data/postings.json data/companies.json config/recipes.json
           if ! git diff --cached --quiet; then
             git commit -m "chore: update snapshots"
             git push

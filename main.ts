@@ -1,9 +1,10 @@
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { parse } from "yaml";
 import { bootstrapCompany } from "./src/agent.js";
 import { diff, loadSnapshot, saveSnapshot } from "./src/differ.js";
 import { sendAlert, sendBrief } from "./src/notifier.js";
+import { pruneClosed, updateCompany, type TrackedPosting } from "./src/postings.js";
 import { loadRecipes, scrapeCompany } from "./src/scraper.js";
 import type { Posting, Recipe } from "./src/types.js";
 
@@ -40,13 +41,13 @@ const RELEVANT_TITLE = /\bintern(ship)?s?\b|\bco-?op\b|\bstudent\b/i;
 async function monitorCompany(
   company: Company,
   recipe: Recipe | undefined
-): Promise<{ fresh: Posting[]; warning?: string }> {
+): Promise<{ fresh: Posting[]; current: Posting[] | null; firstRun: boolean; warning?: string }> {
   // Companies with no recipe yet are NOT bootstrapped here
   // This is to avoid 30-min run re-attempts on every company that failed the process
   // Only a recipe that USED to work gets auto-healed below. 
   // Run `main.ts --bootstrap <company>` manually to add new ones.
   if (!recipe) {
-    return { fresh: [], warning: `${company.name}: no recipe yet, skipped (run --bootstrap)` };
+    return { fresh: [], current: null, firstRun: false, warning: `${company.name}: no recipe yet, skipped (run --bootstrap)` };
   }
 
   let current: Posting[];
@@ -58,6 +59,8 @@ async function monitorCompany(
   } catch (err) {
     recipe = await bootstrapCompany(company.name, company.url);
     current = await scrapeCompany(company.name, recipe);
+    // Still empty after the retry: treat as broken so it can't close every posting.
+    if (current.length === 0) throw new Error("recipe still returned 0 postings after re-bootstrap");
   }
 
   // Filter AFTER the empty-board health check above: a board full of senior
@@ -67,9 +70,51 @@ async function monitorCompany(
   const previous = await loadSnapshot(company.name);
   await saveSnapshot(company.name, current);
   if (previous === null) {
-    return { fresh: [], warning: `${company.name}: first run, baseline saved (${current.length} postings)` };
+    return { fresh: [], current, firstRun: true, warning: `${company.name}: first run, baseline saved (${current.length} postings)` };
   }
-  return { fresh: diff(current, previous) };
+  return { fresh: diff(current, previous), current, firstRun: false };
+}
+
+type CompanyStatus = "ok" | "broken" | "no-recipe";
+
+const POSTINGS_FILE = "data/postings.json";
+const COMPANIES_FILE = "data/companies.json";
+
+// Loads data/postings.json. If it doesn't exist yet (one-time migration), seeds it from the
+// snapshots on disk, all marked baseline since we don't know when those postings went up.
+// Must run before any snapshot is overwritten this run.
+async function loadHistory(companies: Company[], now: Date): Promise<TrackedPosting[]> {
+  if (existsSync(POSTINGS_FILE)) return JSON.parse(await readFile(POSTINGS_FILE, "utf8"));
+  let history: TrackedPosting[] = [];
+  for (const c of companies) {
+    const snapshot = await loadSnapshot(c.name);
+    if (snapshot) history = updateCompany(history, c.name, snapshot, true, now);
+  }
+  return history;
+}
+
+// Applies this run's scrapes to the history and writes postings.json and companies.json (R1, R2).
+async function saveHistory(
+  companies: Company[],
+  history: TrackedPosting[],
+  results: Map<string, { status: CompanyStatus; current: Posting[] | null; firstRun: boolean }>,
+  now: Date
+): Promise<void> {
+  for (const c of companies) {
+    const r = results.get(c.name);
+    if (r) history = updateCompany(history, c.name, r.current, r.firstRun, now);
+  }
+  history = pruneClosed(history, now);
+  await writeFile(POSTINGS_FILE, JSON.stringify(history, null, 2));
+
+  const status = companies.map((c) => ({
+    name: c.name,
+    careersUrl: c.url,
+    status: results.get(c.name)!.status,
+    lastChecked: now.toISOString(),
+    openCount: history.filter((p) => p.company === c.name && !p.closedAt).length,
+  }));
+  await writeFile(COMPANIES_FILE, JSON.stringify(status, null, 2));
 }
 
 async function monitor(): Promise<void> {
@@ -78,24 +123,33 @@ async function monitor(): Promise<void> {
     loadRecipes(),
     isPriority(),
   ]);
+  const now = new Date();
+  const history = await loadHistory(companies, now);
 
   const allFresh: Posting[] = [];
   const warnings: string[] = [];
+  // Scrape results per company, applied to the history after all batches finish.
+  // null current = scrape failed, so its postings stay as they were (not closed).
+  const results = new Map<string, { status: CompanyStatus; current: Posting[] | null; firstRun: boolean }>();
 
   // Concurrency-limited: batches of 5.
   for (let i = 0; i < companies.length; i += 5) {
     await Promise.all(
       companies.slice(i, i + 5).map(async (company) => {
         try {
-          const { fresh, warning } = await monitorCompany(company, recipes[company.name]);
+          const { fresh, current, firstRun, warning } = await monitorCompany(company, recipes[company.name]);
           allFresh.push(...fresh);
           if (warning) warnings.push(warning);
+          results.set(company.name, { status: current ? "ok" : "no-recipe", current, firstRun });
         } catch (err) {
+          results.set(company.name, { status: "broken", current: null, firstRun: false });
           warnings.push(`${company.name}: FAILED — ${err instanceof Error ? err.message : err}`);
         }
       })
     );
   }
+
+  await saveHistory(companies, history, results, now);
 
   for (const posting of allFresh.filter(priority)) {
     await sendAlert(posting);
