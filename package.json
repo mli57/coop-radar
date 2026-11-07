@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
     "bootstrap": "tsx main.ts --bootstrap",
     "monitor": "tsx main.ts --monitor"
   },
@@ -24,6 +24,7 @@
     "@types/node": "^26.1.1",
     "@types/node-cron": "^3.0.11",
     "tsx": "^4.23.1",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
   }
 }
