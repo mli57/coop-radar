@@ -107,9 +107,7 @@ async function monitor(): Promise<void> {
 async function bootstrap(name?: string): Promise<void> {
   const companies = await loadCompanies();
   const recipes = await loadRecipes();
-  const targets = name
-    ? companies.filter((c) => c.name === name)
-    : companies.filter((c) => !recipes[c.name]);
+  const targets = name ? companies.filter((c) => c.name === name) : companies.filter((c) => !recipes[c.name]);
   if (name && targets.length === 0) throw new Error(`${name} not found in companies.yaml`);
 
   for (const c of targets) {

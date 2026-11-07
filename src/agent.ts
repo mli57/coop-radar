@@ -1,3 +1,14 @@
+/**
+ * agent.ts: figures out how to scrape a new company (its "recipe"). Only used in bootstrap mode.
+ *
+ * 1. Opens the careers page in a headless browser.
+ * 2. Looks for a known job board (Ashby, Greenhouse, Lever) in the page. If found, the recipe
+ *    uses that board's public API.
+ * 3. If none is found, asks Gemini for a CSS selector and test-scrapes it, retrying once.
+ *
+ * Monitor mode doesn't use this file, it just follows saved recipes in scraper.ts.
+ * The one exception is main.ts re-bootstrapping a recipe that stopped working.
+ */
 import { readFile, writeFile } from "node:fs/promises";
 import { chromium } from "playwright";
 import { scrapeCompany } from "./scraper.js";
@@ -5,6 +16,7 @@ import type { Recipe } from "./types.js";
 
 const RECIPES_PATH = "config/recipes.json";
 
+// URL patterns for each supported job board. The captured group is the company's token on that board.
 // Most boards embed or link a known ATS — detecting it means the recipe hits a
 // stable JSON API instead of scraping HTML. LLM fallback only when none found.
 const ATS_PATTERNS: { type: "ashby" | "greenhouse" | "lever"; re: RegExp }[] = [
@@ -14,6 +26,7 @@ const ATS_PATTERNS: { type: "ashby" | "greenhouse" | "lever"; re: RegExp }[] = [
   { type: "lever", re: /jobs\.lever\.co\/([\w-]+)/ },
 ];
 
+// Loads a page and returns its rendered HTML plus the URL it ended up on after any redirects.
 async function renderPage(url: string): Promise<{ html: string; finalUrl: string }> {
   const browser = await chromium.launch();
   try {
@@ -28,6 +41,8 @@ async function renderPage(url: string): Promise<{ html: string; finalUrl: string
   }
 }
 
+// Finds the job board hidden behind a company's own careers page. haystack is the text searched
+// (final URL plus page HTML). Each pattern match is test-scraped so a dead token is skipped.
 async function detectAts(company: string, haystack: string): Promise<Recipe | null> {
   for (const { type, re } of ATS_PATTERNS) {
     const token = haystack.match(re)?.[1];
@@ -42,6 +57,7 @@ async function detectAts(company: string, haystack: string): Promise<Recipe | nu
   return null;
 }
 
+// Strips scripts, styles, and extra whitespace so the HTML fits in the Gemini prompt.
 function trimHtml(html: string): string {
   return html
     .replace(/<(script|style|svg|noscript)[\s\S]*?<\/\1>/gi, "")
@@ -49,6 +65,7 @@ function trimHtml(html: string): string {
     .slice(0, 150_000);
 }
 
+// Asks Gemini for a CSS selector matching one element per job. Only used when no job board was found.
 async function askForSelector(html: string, feedback?: string): Promise<string> {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error("GEMINI_API_KEY is not set in .env");
@@ -78,22 +95,25 @@ async function askForSelector(html: string, feedback?: string): Promise<string> 
   return JSON.parse(json).selector;
 }
 
+// Builds and saves a recipe for a company: job board API if one is detected, otherwise a CSS selector.
 export async function bootstrapCompany(company: string, url: string): Promise<Recipe> {
   const { html, finalUrl } = await renderPage(url);
 
+  // Prefer a job board API: faster and more stable than scraping HTML.
   const ats = await detectAts(company, finalUrl + "\n" + html);
   if (ats) {
     await saveRecipe(company, ats);
     return ats;
   }
 
+  // No job board found: ask Gemini for a selector. On failure, retry once with the error as feedback.
   let feedback: string | undefined;
   for (let attempt = 0; attempt < 2; attempt++) {
     const selector = await askForSelector(html, feedback);
     const recipe: Recipe = { type: "css", url: finalUrl, selector };
     try {
       const postings = await scrapeCompany(company, recipe);
-      if (postings.length > 0) {
+      if (postings.length > 0) { // selector found postings, keep it
         await saveRecipe(company, recipe);
         return recipe;
       }
@@ -102,9 +122,11 @@ export async function bootstrapCompany(company: string, url: string): Promise<Re
       feedback = `selector "${selector}" threw: ${err}`;
     }
   }
+  // Both attempts failed.
   throw new Error(`Bootstrap failed for ${company}: ${feedback}`);
 }
 
+// Adds or replaces this company's recipe in config/recipes.json.
 async function saveRecipe(company: string, recipe: Recipe): Promise<void> {
   let recipes: Record<string, Recipe> = {};
   try {
