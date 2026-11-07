@@ -2,6 +2,8 @@ name: monitor
 
 on:
   workflow_dispatch: # triggered by an external cron service via the GitHub API
+  schedule:
+    - cron: "15 */6 * * *" # backup in case the external cron's token expires; GitHub may run it late
 
 # Never let two runs overlap to prevent race on the snapshot commit.
 concurrency:
