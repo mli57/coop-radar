@@ -1,18 +1,6 @@
 [
   {
     "company": "Snowflake Toronto",
-    "title": "Software Engineer Intern - Berlin (2026)",
-    "url": "https://jobs.ashbyhq.com/snowflake/41e65c6c-a01e-4f40-af14-ae75d3b95e27",
-    "location": "DE-Berlin-Trion Building"
-  },
-  {
-    "company": "Snowflake Toronto",
-    "title": "Software Engineer Intern - Zurich (2026)",
-    "url": "https://jobs.ashbyhq.com/snowflake/26a0ae52-97a6-4a46-9216-3c382570d89b",
-    "location": "CH-Zurich-Observe"
-  },
-  {
-    "company": "Snowflake Toronto",
     "title": "SDR Intern - Munich ",
     "url": "https://jobs.ashbyhq.com/snowflake/a4753822-7581-4cf3-8fcc-856f54d684b0",
     "location": "Fins Only-DE-Munich-MSO"
@@ -25,14 +13,20 @@
   },
   {
     "company": "Snowflake Toronto",
-    "title": "Software Engineer Intern - Warsaw Security ",
-    "url": "https://jobs.ashbyhq.com/snowflake/fc1923c1-b151-4458-a792-40d58331a5be",
+    "title": "Software Engineer Intern - Berlin (2027)",
+    "url": "https://jobs.ashbyhq.com/snowflake/ab028e3c-c1cf-4455-8915-8e4e6b0cc9e8",
+    "location": "DE-Berlin-Trion Building"
+  },
+  {
+    "company": "Snowflake Toronto",
+    "title": "Software Engineer Intern AI/ML - Warsaw (2027)",
+    "url": "https://jobs.ashbyhq.com/snowflake/418a8f32-1658-47d9-9450-ed3a6e947215",
     "location": "PL-Warsaw-Lixa C"
   },
   {
     "company": "Snowflake Toronto",
-    "title": "Software Engineer Intern - Berlin (2027)",
-    "url": "https://jobs.ashbyhq.com/snowflake/ab028e3c-c1cf-4455-8915-8e4e6b0cc9e8",
-    "location": "DE-Berlin-Trion Building"
+    "title": "Product Marketing- Agentic Analytics Intern (Spring 2027)",
+    "url": "https://jobs.ashbyhq.com/snowflake/97e37c43-2298-42c8-bb4c-1bcfadc80af9",
+    "location": "US-CA-Menlo Park"
   }
 ]
