@@ -42,5 +42,6 @@
     "skipLibCheck": true,
 
     "noEmit": true,
-  }
+  },
+  "exclude": ["node_modules", "web"]
 }

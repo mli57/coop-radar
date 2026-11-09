@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run --dir src",
     "bootstrap": "tsx main.ts --bootstrap",
     "monitor": "tsx main.ts --monitor"
   },
