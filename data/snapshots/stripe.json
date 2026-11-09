@@ -56,20 +56,14 @@
   {
     "company": "Stripe",
     "title": "PhD Machine Learning Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8328664",
-    "location": "Toronto"
-  },
-  {
-    "company": "Stripe",
-    "title": "PhD Machine Learning Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8328662",
     "location": "San Francisco, New York City, Seattle"
   },
   {
     "company": "Stripe",
-    "title": "Product Design Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8332681",
-    "location": "San Francisco, Seattle, New York City"
+    "title": "PhD Machine Learning Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8328664",
+    "location": "Toronto"
   },
   {
     "company": "Stripe",
@@ -79,9 +73,9 @@
   },
   {
     "company": "Stripe",
-    "title": "Software Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8130867",
-    "location": "London"
+    "title": "Product Design Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8332681",
+    "location": "San Francisco, Seattle, New York City"
   },
   {
     "company": "Stripe",
@@ -94,6 +88,12 @@
     "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8130883",
     "location": "Singapore"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8130867",
+    "location": "London"
   },
   {
     "company": "Stripe",
