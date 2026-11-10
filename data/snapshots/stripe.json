@@ -8,14 +8,14 @@
   {
     "company": "Stripe",
     "title": "Data Analyst, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8194287",
-    "location": "Toronto"
+    "url": "https://stripe.com/jobs/search?gh_jid=8194291",
+    "location": "New York, Seattle, South San Francisco HQ"
   },
   {
     "company": "Stripe",
     "title": "Data Analyst, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8194291",
-    "location": "New York, Seattle, South San Francisco HQ"
+    "url": "https://stripe.com/jobs/search?gh_jid=8194287",
+    "location": "Toronto"
   },
   {
     "company": "Stripe",
@@ -104,6 +104,12 @@
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern (Summer or Winter)",
+    "url": "https://stripe.com/jobs/search?gh_jid=8128745",
+    "location": "San Francisco, Seattle, New York City"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern (Summer or Winter)",
     "url": "https://stripe.com/jobs/search?gh_jid=8130805",
     "location": "Toronto"
   },
@@ -112,11 +118,5 @@
     "title": "Software Engineer, Intern (Summer or Winter)",
     "url": "https://stripe.com/jobs/search?gh_jid=8097801",
     "location": "Dublin"
-  },
-  {
-    "company": "Stripe",
-    "title": "Software Engineer, Intern (Summer or Winter)",
-    "url": "https://stripe.com/jobs/search?gh_jid=8128745",
-    "location": "San Francisco, Seattle, New York City"
   }
 ]
