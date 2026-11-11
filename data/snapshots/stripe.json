@@ -38,13 +38,19 @@
   {
     "company": "Stripe",
     "title": "Master's Machine Learning Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8333122",
+    "location": "Toronto"
+  },
+  {
+    "company": "Stripe",
+    "title": "Master's Machine Learning Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8333074",
     "location": "San Francisco, New York City, Seattle"
   },
   {
     "company": "Stripe",
-    "title": "Master's Machine Learning Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8333122",
+    "title": "PhD Data Scientist, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8194285",
     "location": "Toronto"
   },
   {
@@ -52,12 +58,6 @@
     "title": "PhD Data Scientist, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8194283",
     "location": "New York, Seattle, South San Francisco HQ"
-  },
-  {
-    "company": "Stripe",
-    "title": "PhD Data Scientist, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8194285",
-    "location": "Toronto"
   },
   {
     "company": "Stripe",
@@ -86,6 +86,12 @@
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8130883",
+    "location": "Singapore"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8130867",
     "location": "London"
   },
@@ -97,12 +103,6 @@
   },
   {
     "company": "Stripe",
-    "title": "Software Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8130883",
-    "location": "Singapore"
-  },
-  {
-    "company": "Stripe",
     "title": "Software Engineer, Intern ",
     "url": "https://stripe.com/jobs/search?gh_jid=8130807",
     "location": "Bucharest"
@@ -110,14 +110,14 @@
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern (Summer or Winter)",
-    "url": "https://stripe.com/jobs/search?gh_jid=8128745",
-    "location": "San Francisco, Seattle, New York City"
+    "url": "https://stripe.com/jobs/search?gh_jid=8097801",
+    "location": "Dublin"
   },
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern (Summer or Winter)",
-    "url": "https://stripe.com/jobs/search?gh_jid=8097801",
-    "location": "Dublin"
+    "url": "https://stripe.com/jobs/search?gh_jid=8128745",
+    "location": "San Francisco, Seattle, New York City"
   },
   {
     "company": "Stripe",
