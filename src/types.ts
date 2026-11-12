@@ -25,18 +25,14 @@ export type Recipe =
   // url: page Playwright visits. selector: CSS selector matching one element per posting.
   | { type: "css"; url: string; selector: string }
 
-  // tenant, wdInstance, site come from the board URL: https://{tenant}.{wdInstance}.myworkdayjobs.com/en-US/{site}
-  // appliedFacets are the board's filter checkboxes, sent as Workday's own ids rather than words.
-  // Get the IDs by POSTing an empty search to /wday/cxs/{tenant}/{site}/jobs and reading `facets` in the response.
-  | {
-      type: "workday";
-      tenant: string;
-      wdInstance: string;
-      site: string;
-      searchText?: string;
-      appliedFacets?: Record<string, string[]>;
-    }
+  // tenant, wdInstance and each site come from the board URL: https://{tenant}.{wdInstance}.myworkdayjobs.com/en-US/{site}
+  // sites is a list because some companies post student roles on a separate board (CIBC: "search" and "campus").
+  | { type: "workday"; tenant: string; wdInstance: string; sites: string[] }
 
   // subdomain is the {subdomain} in https://{subdomain}.recruitee.com
   // cityFilter narrows to specific office cities when the board mixes regions
   | { type: "recruitee"; subdomain: string; cityFilter?: string[] };
+
+// Only track intern/co-op roles for now, edit regex to change the scope later.
+// (\b after "op" keeps "co-op"/"coop" from matching "cooperative".)
+export const RELEVANT_TITLE = /\bintern(ship)?s?\b|\bco-?op\b|\bstudent\b/i;

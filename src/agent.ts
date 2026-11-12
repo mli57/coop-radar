@@ -2,7 +2,7 @@
  * agent.ts: figures out how to scrape a new company (its "recipe"). Only used in bootstrap mode.
  *
  * 1. Opens the careers page in a headless browser.
- * 2. Looks for a known job board (Ashby, Greenhouse, Lever) in the page. If found, the recipe
+ * 2. Looks for a known job board (Ashby, Greenhouse, Lever, Workday) in the page. If found, the recipe
  *    uses that board's public API.
  * 3. If none is found, asks Gemini for a CSS selector and test-scrapes it, retrying once.
  *
@@ -25,6 +25,24 @@ const ATS_PATTERNS: { type: "ashby" | "greenhouse" | "lever"; re: RegExp }[] = [
   { type: "greenhouse", re: /(?:job-boards|boards)\.greenhouse\.io\/(?!embed)([\w-]+)/ },
   { type: "lever", re: /jobs\.lever\.co\/([\w-]+)/ },
 ];
+
+// Workday board URLs: https://{tenant}.{wdInstance}.myworkdayjobs.com/{optional en-US}/{site}.
+// "wday" is skipped because that's Workday's API path, not a site.
+const WORKDAY_BOARD = /([\w-]+)\.(wd\d+)\.myworkdayjobs\.com\/(?:[a-z]{2}-[A-Z]{2}\/)?(?!wday\b)([\w-]+)/g;
+// Sites named like these hold invite-only or internal postings, never list them.
+const PRIVATE_SITE = /private|privileged|admin|internal/i;
+
+// Builds a Workday recipe from every public board of the first Workday company found in the haystack.
+export function findWorkday(haystack: string): Extract<Recipe, { type: "workday" }> | null {
+  const boards = [...haystack.matchAll(WORKDAY_BOARD)]
+    .map(([, tenant = "", wdInstance = "", site = ""]) => ({ tenant, wdInstance, site }))
+    .filter((b) => !PRIVATE_SITE.test(b.site));
+  const first = boards[0];
+  if (!first) return null;
+  const sites = new Map<string, string>(); // site names aren't case sensitive, so "rbcglobal1" = "RBCGLOBAL1"
+  for (const b of boards) if (b.tenant === first.tenant && !sites.has(b.site.toLowerCase())) sites.set(b.site.toLowerCase(), b.site);
+  return { type: "workday", tenant: first.tenant, wdInstance: first.wdInstance, sites: [...sites.values()] };
+}
 
 // Loads a page and returns its rendered HTML plus the URL it ended up on after any redirects.
 async function renderPage(url: string): Promise<{ html: string; finalUrl: string }> {
@@ -54,7 +72,20 @@ async function detectAts(company: string, haystack: string): Promise<Recipe | nu
       // matched token didn't resolve to a live board — keep looking
     }
   }
-  return null;
+
+  // Workday: keep each site that answers. 0 student roles is fine here, a dead site throws instead.
+  const workday = findWorkday(haystack);
+  if (!workday) return null;
+  const live: string[] = [];
+  for (const site of workday.sites) {
+    try {
+      await scrapeCompany(company, { ...workday, sites: [site] });
+      live.push(site);
+    } catch {
+      // matched text that isn't a real site, like a path segment
+    }
+  }
+  return live.length > 0 ? { ...workday, sites: live } : null;
 }
 
 // Strips scripts, styles, and extra whitespace so the HTML fits in the Gemini prompt.
@@ -97,6 +128,15 @@ async function askForSelector(html: string, feedback?: string): Promise<string> 
 
 // Builds and saves a recipe for a company: job board API if one is detected, otherwise a CSS selector.
 export async function bootstrapCompany(company: string, url: string): Promise<Recipe> {
+  // A Workday board link already holds the whole recipe, so there's no need to open a browser.
+  if (findWorkday(url)) {
+    const ats = await detectAts(company, url);
+    if (ats) {
+      await saveRecipe(company, ats);
+      return ats;
+    }
+  }
+
   const { html, finalUrl } = await renderPage(url);
 
   // Prefer a job board API: faster and more stable than scraping HTML.

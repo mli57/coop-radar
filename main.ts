@@ -6,7 +6,7 @@ import { diff, loadSnapshot, saveSnapshot } from "./src/differ.js";
 import { sendAlert, sendBrief } from "./src/notifier.js";
 import { pruneClosed, updateCompany, type TrackedPosting } from "./src/postings.js";
 import { loadRecipes, scrapeCompany } from "./src/scraper.js";
-import type { Posting, Recipe } from "./src/types.js";
+import { RELEVANT_TITLE, type Posting, type Recipe } from "./src/types.js";
 
 if (existsSync(".env")) process.loadEnvFile(".env");
 
@@ -34,10 +34,6 @@ async function isPriority(): Promise<(p: Posting) => boolean> {
   return (p) => companies.has(p.company) && regexes.some((re) => re.test(p.title));
 }
 
-// Only track intern/co-op roles for now, edit regex to change the scope later.
-// (\b after "op" keeps "co-op"/"coop" from matching "cooperative".)
-const RELEVANT_TITLE = /\bintern(ship)?s?\b|\bco-?op\b|\bstudent\b/i;
-
 async function monitorCompany(
   company: Company,
   recipe: Recipe | undefined
@@ -50,17 +46,22 @@ async function monitorCompany(
     return { fresh: [], current: null, firstRun: false, warning: `${company.name}: no recipe yet, skipped (run --bootstrap)` };
   }
 
+  // Workday recipes only fetch student roles, so 0 is normal there. scrapeWorkday throws itself if the board is gone.
+  const looksBroken = (r: Recipe, postings: Posting[]) => postings.length === 0 && r.type !== "workday";
+
   let current: Posting[];
+  let rebuilt = false;
   try {
     current = await scrapeCompany(company.name, recipe);
     // A previously-working recipe now returning nothing means it likely broke,
     // not that every job vanished, re-bootstrap and retry once.
-    if (current.length === 0) throw new Error("recipe returned 0 postings");
+    if (looksBroken(recipe, current)) throw new Error("recipe returned 0 postings");
   } catch (err) {
     recipe = await bootstrapCompany(company.name, company.url);
     current = await scrapeCompany(company.name, recipe);
     // Still empty after the retry: treat as broken so it can't close every posting.
-    if (current.length === 0) throw new Error("recipe still returned 0 postings after re-bootstrap");
+    if (looksBroken(recipe, current)) throw new Error("recipe still returned 0 postings after re-bootstrap");
+    rebuilt = true;
   }
 
   // Filter AFTER the empty-board health check above: a board full of senior
@@ -71,6 +72,11 @@ async function monitorCompany(
   await saveSnapshot(company.name, current);
   if (previous === null) {
     return { fresh: [], current, firstRun: true, warning: `${company.name}: first run, baseline saved (${current.length} postings)` };
+  }
+  // A rebuilt recipe can reach more of the board than the old one did (a browser-read Workday page only
+  // shows page 1, its API shows all), so anything it finds this run counts as baseline, not new.
+  if (rebuilt) {
+    return { fresh: [], current, firstRun: true, warning: `${company.name}: recipe rebuilt, postings found this run saved as baseline` };
   }
   return { fresh: diff(current, previous), current, firstRun: false };
 }
