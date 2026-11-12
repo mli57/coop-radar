@@ -8,14 +8,14 @@
   {
     "company": "Stripe",
     "title": "Data Analyst, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8194287",
-    "location": "Toronto"
+    "url": "https://stripe.com/jobs/search?gh_jid=8194291",
+    "location": "New York, Seattle, South San Francisco HQ"
   },
   {
     "company": "Stripe",
     "title": "Data Analyst, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8194291",
-    "location": "New York, Seattle, South San Francisco HQ"
+    "url": "https://stripe.com/jobs/search?gh_jid=8194287",
+    "location": "Toronto"
   },
   {
     "company": "Stripe",
@@ -38,20 +38,14 @@
   {
     "company": "Stripe",
     "title": "Master's Machine Learning Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8333074",
-    "location": "San Francisco, New York City, Seattle"
-  },
-  {
-    "company": "Stripe",
-    "title": "Master's Machine Learning Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8333122",
     "location": "Toronto"
   },
   {
     "company": "Stripe",
-    "title": "PhD Data Scientist, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8194285",
-    "location": "Toronto"
+    "title": "Master's Machine Learning Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8333074",
+    "location": "San Francisco, New York City, Seattle"
   },
   {
     "company": "Stripe",
@@ -61,8 +55,8 @@
   },
   {
     "company": "Stripe",
-    "title": "PhD Machine Learning Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8328664",
+    "title": "PhD Data Scientist, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8194285",
     "location": "Toronto"
   },
   {
@@ -73,8 +67,8 @@
   },
   {
     "company": "Stripe",
-    "title": "Product Design Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8332683",
+    "title": "PhD Machine Learning Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8328664",
     "location": "Toronto"
   },
   {
@@ -85,15 +79,21 @@
   },
   {
     "company": "Stripe",
-    "title": "Software Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8130883",
-    "location": "Singapore"
+    "title": "Product Design Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8332683",
+    "location": "Toronto"
   },
   {
     "company": "Stripe",
     "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8130867",
     "location": "London"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8130883",
+    "location": "Singapore"
   },
   {
     "company": "Stripe",
