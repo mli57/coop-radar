@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "company": "Airbnb",
+    "title": "Advanced Analytics Intern",
+    "url": "https://careers.airbnb.com/positions/8380007?gh_jid=8380007",
+    "location": "United States"
+  },
+  {
+    "company": "Airbnb",
+    "title": "Communications Intern, France",
+    "url": "https://careers.airbnb.com/positions/8376005?gh_jid=8376005",
+    "location": "Paris, France"
+  },
+  {
+    "company": "Airbnb",
+    "title": "Market Associate Intern, Experiences",
+    "url": "https://careers.airbnb.com/positions/8376087?gh_jid=8376087",
+    "location": "Paris, France"
+  },
+  {
+    "company": "Airbnb",
+    "title": "Marketing & CRM Intern, Experiences",
+    "url": "https://careers.airbnb.com/positions/8376124?gh_jid=8376124",
+    "location": "Paris, France"
+  },
+  {
+    "company": "Airbnb",
+    "title": "Sales Development Intern, Services, France",
+    "url": "https://careers.airbnb.com/positions/8372325?gh_jid=8372325",
+    "location": "Paris, France"
+  },
+  {
+    "company": "Airbnb",
+    "title": "Sales Development Intern, Services, Italy",
+    "url": "https://careers.airbnb.com/positions/8372095?gh_jid=8372095",
+    "location": "Milan, Italy"
+  },
+  {
+    "company": "Airbnb",
+    "title": "Sales Development Intern, Services, Spain",
+    "url": "https://careers.airbnb.com/positions/8372424?gh_jid=8372424",
+    "location": "Barcelona, Spain"
+  }
+]
