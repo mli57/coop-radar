@@ -35,7 +35,11 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
+      # Installs system packages from Ubuntu's servers, which are sometimes unreachable from the runner.
+      # Keep going if so: only css recipes need the browser. They show as broken while the install keeps failing,
+      # and their postings are left as they were, not closed.
       - run: npx playwright install --with-deps chromium
+        continue-on-error: true
 
       - name: Run monitor
         env:
