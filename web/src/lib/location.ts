@@ -33,7 +33,8 @@ const REGION_NAME = /\b(Canada|Ontario(?!,\s*CA\b)|Qu[eé]bec|British Columbia|A
 // Left out because they're also country codes: SK (Slovakia), NL (Netherlands), PE (Peru).
 const PROVINCE_CODE = /,\s*(ON|QC|BC|AB|MB|NS|NB)\b/;
 
-function isCanadian(location: string): boolean {
+// Also used by the Workday scraper to pick a board's Canadian office filters.
+export function isCanadian(location: string): boolean {
   return REGION_NAME.test(location) || PROVINCE_CODE.test(location) || CITIES.some(([, city]) => city.test(location));
 }
 
