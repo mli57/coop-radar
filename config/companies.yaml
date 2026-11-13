@@ -82,6 +82,94 @@ companies:
   - name: Magnet Forensics
     url: https://www.magnetforensics.com/careers
 
+  # Workday: url is the public board, bootstrap reads the recipe straight off it
+  - name: Aptiv
+    url: https://aptiv.wd5.myworkdayjobs.com/en-US/aptiv_careers
+  - name: CIBC   # recipe also has the "campus" board for student roles
+    url: https://cibc.wd3.myworkdayjobs.com/en-US/search
+  - name: RBC   # recipe also has the "RBCEARLYTALENT1" board for student roles
+    url: https://rbc.wd3.myworkdayjobs.com/en-US/RBCGLOBAL1
+  - name: BMO   # recipe also has the "Campus" board for student roles
+    url: https://bmo.wd3.myworkdayjobs.com/en-US/External
+  - name: Manulife
+    url: https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs
+  - name: SOTI
+    url: https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen
+  - name: Ciena
+    url: https://ciena.wd5.myworkdayjobs.com/en-US/Careers
+  - name: Semtech
+    url: https://semtech.wd1.myworkdayjobs.com/en-US/SemtechCareers
+  - name: Altera
+    url: https://altera.wd1.myworkdayjobs.com/en-US/altera
+  - name: CAE
+    url: https://cae.wd3.myworkdayjobs.com/en-US/career
+  - name: Marvell
+    url: https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers
+  - name: Trimble
+    url: https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers
+  - name: Lumentum
+    url: https://lumentum.wd5.myworkdayjobs.com/en-US/LITE
+  - name: Analog Devices
+    url: https://analogdevices.wd1.myworkdayjobs.com/en-US/External
+  - name: Intel
+    url: https://intel.wd1.myworkdayjobs.com/en-US/external
+  - name: Hitachi
+    url: https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi
+  - name: Thomson Reuters
+    url: https://thomsonreuters.wd5.myworkdayjobs.com/en-US/External_Career_Site
+  - name: RTX
+    url: https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway
+  - name: Loblaw Companies
+    url: https://myview.wd3.myworkdayjobs.com/en-US/paradox_careers
+  - name: Bird Construction
+    url: https://bird.wd3.myworkdayjobs.com/en-US/BirdConstructionCareers
+  - name: Brookfield
+    url: https://brookfield.wd5.myworkdayjobs.com/en-US/brookfield
+  - name: Danaher
+    url: https://danaher.wd1.myworkdayjobs.com/en-US/DanaherJobs
+  - name: Entrust
+    url: https://entrust.wd1.myworkdayjobs.com/en-US/entrustcareers
+  - name: Teledyne FLIR
+    url: https://flir.wd1.myworkdayjobs.com/en-US/flircareers
+  - name: Foresters Financial
+    url: https://foresters.wd3.myworkdayjobs.com/en-US/ForestersFinancialCareers
+  - name: McKesson
+    url: https://mckesson.wd3.myworkdayjobs.com/en-US/External_Careers
+  - name: Siemens Healthineers
+    url: https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB
+  - name: PSP Investments
+    url: https://investpsp.wd3.myworkdayjobs.com/en-US/psp_careers
+  - name: Alberta Motor Association
+    url: https://albertamotorassociation.wd3.myworkdayjobs.com/en-US/ama
+  - name: Thales
+    url: https://thales.wd3.myworkdayjobs.com/en-US/Careers
+  - name: Citi
+    url: https://citi.wd5.myworkdayjobs.com/en-US/2
+  - name: MLSE
+    url: https://mlse.wd3.myworkdayjobs.com/en-US/MLSE
+  - name: AtkinsRéalis
+    url: https://slihrms.wd3.myworkdayjobs.com/en-US/careers
+  - name: TMX Group
+    url: https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers
+  - name: Cenovus Energy
+    url: https://cenovus.wd3.myworkdayjobs.com/en-US/careers
+  - name: Arlo
+    url: https://arlo.wd12.myworkdayjobs.com/en-US/External_Careers
+  - name: Wolters Kluwer
+    url: https://wk.wd3.myworkdayjobs.com/en-US/External
+  - name: Element Fleet Management
+    url: https://elementfleet.wd3.myworkdayjobs.com/en-US/External_Career_Site
+  - name: Ryan
+    url: https://ryan.wd1.myworkdayjobs.com/en-US/RyanCareers
+  - name: University of Ottawa
+    url: https://uottawa.wd3.myworkdayjobs.com/en-US/uOttawa_External_Career_Site
+  - name: OLG
+    url: https://olg.wd3.myworkdayjobs.com/en-US/Careers-Students
+  - name: PETRONAS Canada
+    url: https://petronascanada.wd3.myworkdayjobs.com/en-US/PETRONASCanada
+  - name: BlackBerry
+    url: https://bb.wd3.myworkdayjobs.com/en-US/Student
+
   # Custom (css): proprietary careers pages, no public ATS API
   - name: Deep Genomics
     url: https://www.deepgenomics.com/careers

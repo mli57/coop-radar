@@ -184,5 +184,352 @@
   "Vercel": {
     "type": "greenhouse",
     "token": "vercel"
+  },
+  "Aptiv": {
+    "type": "workday",
+    "tenant": "aptiv",
+    "wdInstance": "wd5",
+    "sites": [
+      "aptiv_careers"
+    ]
+  },
+  "CIBC": {
+    "type": "workday",
+    "tenant": "cibc",
+    "wdInstance": "wd3",
+    "sites": [
+      "search",
+      "campus"
+    ]
+  },
+  "RBC": {
+    "type": "workday",
+    "tenant": "rbc",
+    "wdInstance": "wd3",
+    "sites": [
+      "RBCGLOBAL1",
+      "RBCEARLYTALENT1"
+    ]
+  },
+  "BMO": {
+    "type": "workday",
+    "tenant": "bmo",
+    "wdInstance": "wd3",
+    "sites": [
+      "External",
+      "Campus"
+    ]
+  },
+  "Manulife": {
+    "type": "workday",
+    "tenant": "manulife",
+    "wdInstance": "wd3",
+    "sites": [
+      "MFCJH_Jobs"
+    ]
+  },
+  "SOTI": {
+    "type": "workday",
+    "tenant": "soti",
+    "wdInstance": "wd3",
+    "sites": [
+      "SOTI-Next-Gen"
+    ]
+  },
+  "Ciena": {
+    "type": "workday",
+    "tenant": "ciena",
+    "wdInstance": "wd5",
+    "sites": [
+      "Careers"
+    ]
+  },
+  "Semtech": {
+    "type": "workday",
+    "tenant": "semtech",
+    "wdInstance": "wd1",
+    "sites": [
+      "SemtechCareers"
+    ]
+  },
+  "Altera": {
+    "type": "workday",
+    "tenant": "altera",
+    "wdInstance": "wd1",
+    "sites": [
+      "altera"
+    ]
+  },
+  "CAE": {
+    "type": "workday",
+    "tenant": "cae",
+    "wdInstance": "wd3",
+    "sites": [
+      "career"
+    ]
+  },
+  "Marvell": {
+    "type": "workday",
+    "tenant": "marvell",
+    "wdInstance": "wd1",
+    "sites": [
+      "MarvellCareers"
+    ]
+  },
+  "Trimble": {
+    "type": "workday",
+    "tenant": "trimble",
+    "wdInstance": "wd1",
+    "sites": [
+      "TrimbleCareers"
+    ]
+  },
+  "Lumentum": {
+    "type": "workday",
+    "tenant": "lumentum",
+    "wdInstance": "wd5",
+    "sites": [
+      "LITE"
+    ]
+  },
+  "Analog Devices": {
+    "type": "workday",
+    "tenant": "analogdevices",
+    "wdInstance": "wd1",
+    "sites": [
+      "External"
+    ]
+  },
+  "Intel": {
+    "type": "workday",
+    "tenant": "intel",
+    "wdInstance": "wd1",
+    "sites": [
+      "external"
+    ]
+  },
+  "Thomson Reuters": {
+    "type": "workday",
+    "tenant": "thomsonreuters",
+    "wdInstance": "wd5",
+    "sites": [
+      "External_Career_Site"
+    ]
+  },
+  "RTX": {
+    "type": "workday",
+    "tenant": "globalhr",
+    "wdInstance": "wd5",
+    "sites": [
+      "REC_RTX_Ext_Gateway"
+    ]
+  },
+  "Loblaw Companies": {
+    "type": "workday",
+    "tenant": "myview",
+    "wdInstance": "wd3",
+    "sites": [
+      "paradox_careers"
+    ]
+  },
+  "Bird Construction": {
+    "type": "workday",
+    "tenant": "bird",
+    "wdInstance": "wd3",
+    "sites": [
+      "BirdConstructionCareers"
+    ]
+  },
+  "Brookfield": {
+    "type": "workday",
+    "tenant": "brookfield",
+    "wdInstance": "wd5",
+    "sites": [
+      "brookfield"
+    ]
+  },
+  "Danaher": {
+    "type": "workday",
+    "tenant": "danaher",
+    "wdInstance": "wd1",
+    "sites": [
+      "DanaherJobs"
+    ]
+  },
+  "Entrust": {
+    "type": "workday",
+    "tenant": "entrust",
+    "wdInstance": "wd1",
+    "sites": [
+      "entrustcareers"
+    ]
+  },
+  "Teledyne FLIR": {
+    "type": "workday",
+    "tenant": "flir",
+    "wdInstance": "wd1",
+    "sites": [
+      "flircareers"
+    ]
+  },
+  "Foresters Financial": {
+    "type": "workday",
+    "tenant": "foresters",
+    "wdInstance": "wd3",
+    "sites": [
+      "ForestersFinancialCareers"
+    ]
+  },
+  "McKesson": {
+    "type": "workday",
+    "tenant": "mckesson",
+    "wdInstance": "wd3",
+    "sites": [
+      "External_Careers"
+    ]
+  },
+  "Siemens Healthineers": {
+    "type": "workday",
+    "tenant": "onehealthineers",
+    "wdInstance": "wd3",
+    "sites": [
+      "SHSJB"
+    ]
+  },
+  "PSP Investments": {
+    "type": "workday",
+    "tenant": "investpsp",
+    "wdInstance": "wd3",
+    "sites": [
+      "psp_careers"
+    ]
+  },
+  "Alberta Motor Association": {
+    "type": "workday",
+    "tenant": "albertamotorassociation",
+    "wdInstance": "wd3",
+    "sites": [
+      "ama"
+    ]
+  },
+  "Thales": {
+    "type": "workday",
+    "tenant": "thales",
+    "wdInstance": "wd3",
+    "sites": [
+      "Careers"
+    ]
+  },
+  "Citi": {
+    "type": "workday",
+    "tenant": "citi",
+    "wdInstance": "wd5",
+    "sites": [
+      "2"
+    ]
+  },
+  "MLSE": {
+    "type": "workday",
+    "tenant": "mlse",
+    "wdInstance": "wd3",
+    "sites": [
+      "MLSE"
+    ]
+  },
+  "Hitachi": {
+    "type": "workday",
+    "tenant": "hitachi",
+    "wdInstance": "wd1",
+    "sites": [
+      "hitachi"
+    ]
+  },
+  "AtkinsRéalis": {
+    "type": "workday",
+    "tenant": "slihrms",
+    "wdInstance": "wd3",
+    "sites": [
+      "careers"
+    ]
+  },
+  "TMX Group": {
+    "type": "workday",
+    "tenant": "tmx",
+    "wdInstance": "wd3",
+    "sites": [
+      "TMX_Careers"
+    ]
+  },
+  "Cenovus Energy": {
+    "type": "workday",
+    "tenant": "cenovus",
+    "wdInstance": "wd3",
+    "sites": [
+      "careers"
+    ]
+  },
+  "Arlo": {
+    "type": "workday",
+    "tenant": "arlo",
+    "wdInstance": "wd12",
+    "sites": [
+      "External_Careers"
+    ]
+  },
+  "Wolters Kluwer": {
+    "type": "workday",
+    "tenant": "wk",
+    "wdInstance": "wd3",
+    "sites": [
+      "External"
+    ]
+  },
+  "Element Fleet Management": {
+    "type": "workday",
+    "tenant": "elementfleet",
+    "wdInstance": "wd3",
+    "sites": [
+      "External_Career_Site"
+    ]
+  },
+  "Ryan": {
+    "type": "workday",
+    "tenant": "ryan",
+    "wdInstance": "wd1",
+    "sites": [
+      "RyanCareers"
+    ]
+  },
+  "University of Ottawa": {
+    "type": "workday",
+    "tenant": "uottawa",
+    "wdInstance": "wd3",
+    "sites": [
+      "uOttawa_External_Career_Site"
+    ]
+  },
+  "OLG": {
+    "type": "workday",
+    "tenant": "olg",
+    "wdInstance": "wd3",
+    "sites": [
+      "Careers-Students"
+    ]
+  },
+  "PETRONAS Canada": {
+    "type": "workday",
+    "tenant": "petronascanada",
+    "wdInstance": "wd3",
+    "sites": [
+      "PETRONASCanada"
+    ]
+  },
+  "BlackBerry": {
+    "type": "workday",
+    "tenant": "bb",
+    "wdInstance": "wd3",
+    "sites": [
+      "Student"
+    ]
   }
 }
