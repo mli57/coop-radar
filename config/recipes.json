@@ -99,9 +99,12 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Arctic Wolf": {
-    "type": "css",
-    "url": "https://arcticwolf.wd1.myworkdayjobs.com/External",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
+    "type": "workday",
+    "tenant": "arcticwolf",
+    "wdInstance": "wd1",
+    "sites": [
+      "External"
+    ]
   },
   "Huawei": {
     "type": "css",
