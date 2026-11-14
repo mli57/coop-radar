@@ -328,12 +328,9 @@
     ]
   },
   "Loblaw Companies": {
-    "type": "workday",
-    "tenant": "myview",
-    "wdInstance": "wd3",
-    "sites": [
-      "paradox_careers"
-    ]
+    "type": "css",
+    "url": "https://myview.wd3.myworkdayjobs.com/en-US/paradox_careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Bird Construction": {
     "type": "workday",
