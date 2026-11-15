@@ -525,11 +525,8 @@
     ]
   },
   "BlackBerry": {
-    "type": "workday",
-    "tenant": "bb",
-    "wdInstance": "wd3",
-    "sites": [
-      "Student"
-    ]
+    "type": "css",
+    "url": "https://bb.wd3.myworkdayjobs.com/en-US/Student",
+    "selector": "a[href*=\"/Student/jobs\"]"
   }
 }
