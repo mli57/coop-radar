@@ -199,13 +199,9 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "RBC": {
-    "type": "workday",
-    "tenant": "rbc",
-    "wdInstance": "wd3",
-    "sites": [
-      "RBCGLOBAL1",
-      "RBCEARLYTALENT1"
-    ]
+    "type": "css",
+    "url": "https://rbc.wd3.myworkdayjobs.com/en-US/RBCGLOBAL1",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "BMO": {
     "type": "css",
@@ -221,20 +217,14 @@
     ]
   },
   "SOTI": {
-    "type": "workday",
-    "tenant": "soti",
-    "wdInstance": "wd3",
-    "sites": [
-      "SOTI-Next-Gen"
-    ]
+    "type": "css",
+    "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Ciena": {
-    "type": "workday",
-    "tenant": "ciena",
-    "wdInstance": "wd5",
-    "sites": [
-      "Careers"
-    ]
+    "type": "css",
+    "url": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Semtech": {
     "type": "css",
@@ -284,12 +274,9 @@
     ]
   },
   "Intel": {
-    "type": "workday",
-    "tenant": "intel",
-    "wdInstance": "wd1",
-    "sites": [
-      "external"
-    ]
+    "type": "css",
+    "url": "https://intel.wd1.myworkdayjobs.com/en-US/external",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Thomson Reuters": {
     "type": "workday",
@@ -374,12 +361,9 @@
     ]
   },
   "PSP Investments": {
-    "type": "workday",
-    "tenant": "investpsp",
-    "wdInstance": "wd3",
-    "sites": [
-      "psp_careers"
-    ]
+    "type": "css",
+    "url": "https://investpsp.wd3.myworkdayjobs.com/en-US/psp_careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Alberta Motor Association": {
     "type": "workday",
@@ -411,12 +395,9 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Hitachi": {
-    "type": "workday",
-    "tenant": "hitachi",
-    "wdInstance": "wd1",
-    "sites": [
-      "hitachi"
-    ]
+    "type": "css",
+    "url": "https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "AtkinsRéalis": {
     "type": "workday",
