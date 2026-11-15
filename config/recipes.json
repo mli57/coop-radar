@@ -287,12 +287,9 @@
     ]
   },
   "RTX": {
-    "type": "workday",
-    "tenant": "globalhr",
-    "wdInstance": "wd5",
-    "sites": [
-      "REC_RTX_Ext_Gateway"
-    ]
+    "type": "css",
+    "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Loblaw Companies": {
     "type": "css",
@@ -300,20 +297,14 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Bird Construction": {
-    "type": "workday",
-    "tenant": "bird",
-    "wdInstance": "wd3",
-    "sites": [
-      "BirdConstructionCareers"
-    ]
+    "type": "css",
+    "url": "https://bird.wd3.myworkdayjobs.com/en-US/BirdConstructionCareers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Brookfield": {
-    "type": "workday",
-    "tenant": "brookfield",
-    "wdInstance": "wd5",
-    "sites": [
-      "brookfield"
-    ]
+    "type": "css",
+    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfield",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Danaher": {
     "type": "css",
@@ -432,12 +423,9 @@
     ]
   },
   "Wolters Kluwer": {
-    "type": "workday",
-    "tenant": "wk",
-    "wdInstance": "wd3",
-    "sites": [
-      "External"
-    ]
+    "type": "css",
+    "url": "https://wk.wd3.myworkdayjobs.com/en-US/External",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Element Fleet Management": {
     "type": "workday",
