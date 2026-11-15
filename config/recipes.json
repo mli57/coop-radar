@@ -189,21 +189,14 @@
     "token": "vercel"
   },
   "Aptiv": {
-    "type": "workday",
-    "tenant": "aptiv",
-    "wdInstance": "wd5",
-    "sites": [
-      "aptiv_careers"
-    ]
+    "type": "css",
+    "url": "https://aptiv.wd5.myworkdayjobs.com/en-US/aptiv_careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "CIBC": {
-    "type": "workday",
-    "tenant": "cibc",
-    "wdInstance": "wd3",
-    "sites": [
-      "search",
-      "campus"
-    ]
+    "type": "css",
+    "url": "https://cibc.wd3.myworkdayjobs.com/en-US/search",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "RBC": {
     "type": "workday",
@@ -215,13 +208,9 @@
     ]
   },
   "BMO": {
-    "type": "workday",
-    "tenant": "bmo",
-    "wdInstance": "wd3",
-    "sites": [
-      "External",
-      "Campus"
-    ]
+    "type": "css",
+    "url": "https://bmo.wd3.myworkdayjobs.com/en-US/External",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Manulife": {
     "type": "workday",
@@ -248,28 +237,19 @@
     ]
   },
   "Semtech": {
-    "type": "workday",
-    "tenant": "semtech",
-    "wdInstance": "wd1",
-    "sites": [
-      "SemtechCareers"
-    ]
+    "type": "css",
+    "url": "https://semtech.wd1.myworkdayjobs.com/en-US/SemtechCareers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Altera": {
-    "type": "workday",
-    "tenant": "altera",
-    "wdInstance": "wd1",
-    "sites": [
-      "altera"
-    ]
+    "type": "css",
+    "url": "https://altera.wd1.myworkdayjobs.com/en-US/altera",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "CAE": {
-    "type": "workday",
-    "tenant": "cae",
-    "wdInstance": "wd3",
-    "sites": [
-      "career"
-    ]
+    "type": "css",
+    "url": "https://cae.wd3.myworkdayjobs.com/en-US/career",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Marvell": {
     "type": "workday",
@@ -349,12 +329,9 @@
     ]
   },
   "Danaher": {
-    "type": "workday",
-    "tenant": "danaher",
-    "wdInstance": "wd1",
-    "sites": [
-      "DanaherJobs"
-    ]
+    "type": "css",
+    "url": "https://danaher.wd1.myworkdayjobs.com/en-US/DanaherJobs",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Entrust": {
     "type": "workday",
@@ -429,12 +406,9 @@
     ]
   },
   "MLSE": {
-    "type": "workday",
-    "tenant": "mlse",
-    "wdInstance": "wd3",
-    "sites": [
-      "MLSE"
-    ]
+    "type": "css",
+    "url": "https://mlse.wd3.myworkdayjobs.com/en-US/MLSE",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Hitachi": {
     "type": "workday",
