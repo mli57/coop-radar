@@ -74,20 +74,14 @@
   {
     "company": "Stripe",
     "title": "Product Design Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8332683",
-    "location": "Toronto"
-  },
-  {
-    "company": "Stripe",
-    "title": "Product Design Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8332681",
     "location": "San Francisco, Seattle, New York City"
   },
   {
     "company": "Stripe",
-    "title": "Software Engineer, Intern",
-    "url": "https://stripe.com/jobs/search?gh_jid=8130867",
-    "location": "London"
+    "title": "Product Design Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8332683",
+    "location": "Toronto"
   },
   {
     "company": "Stripe",
@@ -100,6 +94,12 @@
     "title": "Software Engineer, Intern",
     "url": "https://stripe.com/jobs/search?gh_jid=8130883",
     "location": "Singapore"
+  },
+  {
+    "company": "Stripe",
+    "title": "Software Engineer, Intern",
+    "url": "https://stripe.com/jobs/search?gh_jid=8130867",
+    "location": "London"
   },
   {
     "company": "Stripe",
