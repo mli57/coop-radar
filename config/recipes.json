@@ -321,12 +321,9 @@
     ]
   },
   "McKesson": {
-    "type": "workday",
-    "tenant": "mckesson",
-    "wdInstance": "wd3",
-    "sites": [
-      "External_Careers"
-    ]
+    "type": "css",
+    "url": "https://mckesson.wd3.myworkdayjobs.com/en-US/External_Careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Siemens Healthineers": {
     "type": "css",
