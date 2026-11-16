@@ -371,12 +371,9 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Cenovus Energy": {
-    "type": "workday",
-    "tenant": "cenovus",
-    "wdInstance": "wd3",
-    "sites": [
-      "careers"
-    ]
+    "type": "css",
+    "url": "https://cenovus.wd3.myworkdayjobs.com/en-US/careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Arlo": {
     "type": "css",
