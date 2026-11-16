@@ -239,12 +239,9 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Marvell": {
-    "type": "workday",
-    "tenant": "marvell",
-    "wdInstance": "wd1",
-    "sites": [
-      "MarvellCareers"
-    ]
+    "type": "css",
+    "url": "https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Trimble": {
     "type": "css",
