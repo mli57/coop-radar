@@ -388,12 +388,9 @@
     ]
   },
   "Arlo": {
-    "type": "workday",
-    "tenant": "arlo",
-    "wdInstance": "wd12",
-    "sites": [
-      "External_Careers"
-    ]
+    "type": "css",
+    "url": "https://arlo.wd12.myworkdayjobs.com/en-US/External_Careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Wolters Kluwer": {
     "type": "css",
