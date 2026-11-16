@@ -209,12 +209,9 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Manulife": {
-    "type": "workday",
-    "tenant": "manulife",
-    "wdInstance": "wd3",
-    "sites": [
-      "MFCJH_Jobs"
-    ]
+    "type": "css",
+    "url": "https://manulife.wd3.myworkdayjobs.com/en-US/MFCJH_Jobs",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "SOTI": {
     "type": "css",
@@ -361,12 +358,9 @@
     ]
   },
   "Citi": {
-    "type": "workday",
-    "tenant": "citi",
-    "wdInstance": "wd5",
-    "sites": [
-      "2"
-    ]
+    "type": "css",
+    "url": "https://citi.wd5.myworkdayjobs.com/en-US/2",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "MLSE": {
     "type": "css",
@@ -387,12 +381,9 @@
     ]
   },
   "TMX Group": {
-    "type": "workday",
-    "tenant": "tmx",
-    "wdInstance": "wd3",
-    "sites": [
-      "TMX_Careers"
-    ]
+    "type": "css",
+    "url": "https://tmx.wd3.myworkdayjobs.com/en-US/TMX_Careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Cenovus Energy": {
     "type": "workday",
@@ -440,12 +431,9 @@
     ]
   },
   "OLG": {
-    "type": "workday",
-    "tenant": "olg",
-    "wdInstance": "wd3",
-    "sites": [
-      "Careers-Students"
-    ]
+    "type": "css",
+    "url": "https://olg.wd3.myworkdayjobs.com/en-US/Careers-Students",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "PETRONAS Canada": {
     "type": "workday",
