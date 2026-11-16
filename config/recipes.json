@@ -258,12 +258,9 @@
     ]
   },
   "Lumentum": {
-    "type": "workday",
-    "tenant": "lumentum",
-    "wdInstance": "wd5",
-    "sites": [
-      "LITE"
-    ]
+    "type": "css",
+    "url": "https://lumentum.wd5.myworkdayjobs.com/en-US/LITE",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Analog Devices": {
     "type": "css",
@@ -317,12 +314,9 @@
     ]
   },
   "Teledyne FLIR": {
-    "type": "workday",
-    "tenant": "flir",
-    "wdInstance": "wd1",
-    "sites": [
-      "flircareers"
-    ]
+    "type": "css",
+    "url": "https://flir.wd1.myworkdayjobs.com/en-US/flircareers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Foresters Financial": {
     "type": "workday",
@@ -341,12 +335,9 @@
     ]
   },
   "Siemens Healthineers": {
-    "type": "workday",
-    "tenant": "onehealthineers",
-    "wdInstance": "wd3",
-    "sites": [
-      "SHSJB"
-    ]
+    "type": "css",
+    "url": "https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "PSP Investments": {
     "type": "css",
