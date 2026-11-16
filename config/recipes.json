@@ -307,12 +307,9 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Foresters Financial": {
-    "type": "workday",
-    "tenant": "foresters",
-    "wdInstance": "wd3",
-    "sites": [
-      "ForestersFinancialCareers"
-    ]
+    "type": "css",
+    "url": "https://foresters.wd3.myworkdayjobs.com/en-US/ForestersFinancialCareers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "McKesson": {
     "type": "css",
