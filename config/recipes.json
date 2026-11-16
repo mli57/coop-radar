@@ -267,12 +267,9 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Thomson Reuters": {
-    "type": "workday",
-    "tenant": "thomsonreuters",
-    "wdInstance": "wd5",
-    "sites": [
-      "External_Career_Site"
-    ]
+    "type": "css",
+    "url": "https://thomsonreuters.wd5.myworkdayjobs.com/en-US/External_Career_Site",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "RTX": {
     "type": "css",
