@@ -247,12 +247,9 @@
     ]
   },
   "Trimble": {
-    "type": "workday",
-    "tenant": "trimble",
-    "wdInstance": "wd1",
-    "sites": [
-      "TrimbleCareers"
-    ]
+    "type": "css",
+    "url": "https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Lumentum": {
     "type": "css",
