@@ -350,12 +350,9 @@
     ]
   },
   "Thales": {
-    "type": "workday",
-    "tenant": "thales",
-    "wdInstance": "wd3",
-    "sites": [
-      "Careers"
-    ]
+    "type": "css",
+    "url": "https://thales.wd3.myworkdayjobs.com/en-US/Careers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Citi": {
     "type": "css",
