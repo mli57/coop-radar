@@ -266,12 +266,9 @@
     ]
   },
   "Analog Devices": {
-    "type": "workday",
-    "tenant": "analogdevices",
-    "wdInstance": "wd1",
-    "sites": [
-      "External"
-    ]
+    "type": "css",
+    "url": "https://analogdevices.wd1.myworkdayjobs.com/en-US/External",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Intel": {
     "type": "css",
