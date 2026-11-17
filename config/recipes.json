@@ -294,12 +294,9 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Entrust": {
-    "type": "workday",
-    "tenant": "entrust",
-    "wdInstance": "wd1",
-    "sites": [
-      "entrustcareers"
-    ]
+    "type": "css",
+    "url": "https://entrust.wd1.myworkdayjobs.com/en-US/entrustcareers",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Teledyne FLIR": {
     "type": "css",
@@ -399,12 +396,9 @@
     ]
   },
   "University of Ottawa": {
-    "type": "workday",
-    "tenant": "uottawa",
-    "wdInstance": "wd3",
-    "sites": [
-      "uOttawa_External_Career_Site"
-    ]
+    "type": "css",
+    "url": "https://uottawa.wd3.myworkdayjobs.com/en-US/uOttawa_External_Career_Site",
+    "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "OLG": {
     "type": "css",
