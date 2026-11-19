@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { About } from "./components/About.js";
+import { Companies } from "./components/Companies.js";
 import { FilterBar } from "./components/FilterBar.js";
 import { PostingGroup } from "./components/PostingGroup.js";
 import { DEFAULT_FILTERS, applyFilters, type Filters } from "./lib/filter.js";
@@ -9,9 +10,16 @@ import type { Company, TrackedPosting } from "./types.js";
 
 interface Loaded {
   postings: TrackedPosting[];
+  companies: Company[];
   updatedAt: string | undefined;
   now: Date;
   previousVisit: string | null;
+}
+
+const TITLES = { board: "Postings", companies: "Companies", about: "About" };
+
+function pageOf(hash: string): keyof typeof TITLES {
+  return hash === "#about" ? "about" : hash === "#companies" ? "companies" : "board";
 }
 
 async function fetchData<T>(file: string): Promise<T> {
@@ -25,17 +33,17 @@ export function App() {
   const [failed, setFailed] = useState(false);
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
 
-  const [showAbout, setShowAbout] = useState(location.hash === "#about");
+  const [page, setPage] = useState(pageOf(location.hash));
 
   useEffect(() => {
-    document.title = showAbout ? "About - coop-radar" : "coop-radar";
-  }, [showAbout]);
+    document.title = page === "board" ? "coop-radar" : `${TITLES[page]} - coop-radar`;
+  }, [page]);
 
   useEffect(() => {
     const onHashChange = () => {
-      const about = location.hash === "#about";
-      setShowAbout(about);
-      if (about) window.scrollTo(0, 0);
+      const next = pageOf(location.hash);
+      setPage(next);
+      if (next !== "board") window.scrollTo(0, 0);
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
@@ -46,7 +54,7 @@ export function App() {
       .then(([postings, companies]) => {
         const now = new Date();
         const updatedAt = companies.map((c) => c.lastChecked).sort().at(-1);
-        setData({ postings, updatedAt, now, previousVisit: readPreviousVisit(now) });
+        setData({ postings, companies, updatedAt, now, previousVisit: readPreviousVisit(now) });
       })
       .catch(() => setFailed(true));
   }, []);
@@ -61,11 +69,23 @@ export function App() {
           <a href="#">coop-radar</a>
         </h1>
         {data?.updatedAt && <span className="updated">Updated {timeAgo(data.updatedAt, data.now)}</span>}
-        {showAbout ? <a href="#">Postings</a> : <a href="#about">About</a>}
+        <nav>
+          {(["board", "companies", "about"] as const).map((p) => (
+            <a key={p} href={p === "board" ? "#" : `#${p}`} aria-current={p === page ? "page" : undefined}>
+              {TITLES[p]}
+            </a>
+          ))}
+        </nav>
       </header>
 
-      {showAbout ? (
+      {page === "about" ? (
         <About />
+      ) : page === "companies" ? (
+        <main>
+          {failed && <p className="message">Companies could not be loaded. Refresh the page to try again.</p>}
+          {!failed && !data && <p className="message">Loading companies</p>}
+          {data && <Companies companies={data.companies} />}
+        </main>
       ) : (
         <main>
           {failed && <p className="message">Postings could not be loaded. Refresh the page to try again.</p>}

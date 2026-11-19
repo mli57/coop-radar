@@ -65,6 +65,16 @@ a {
   color: var(--muted);
 }
 
+.masthead nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.masthead nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: none;
+}
+
 .filters {
   position: sticky;
   top: 0;
@@ -294,6 +304,122 @@ a {
   font-size: 1rem;
 }
 
+.companies {
+  padding-bottom: 2rem;
+}
+
+.companies h2,
+.companies h3 {
+  margin: 0.875rem 0 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+}
+
+.summary {
+  margin: 0 0 1rem;
+  padding-left: 0.75rem;
+  color: var(--muted);
+}
+
+.request {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0.75rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.request h3 {
+  flex-basis: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.request label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.request input {
+  width: 16rem;
+  max-width: 100%;
+  height: 2.25rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--muted);
+  border-radius: 3px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+}
+
+.request button {
+  height: 2.25rem;
+  padding: 0 0.875rem;
+  border: 0;
+  border-radius: 3px;
+  background: var(--signal);
+  color: var(--white);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.companies ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.company-columns,
+.company-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 9rem 4rem 7rem;
+  gap: 1rem;
+  padding-inline: 0.75rem;
+}
+
+.company-columns {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.company-row {
+  align-items: baseline;
+  padding-block: 0.3125rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.company-name {
+  font-weight: 700;
+}
+
+.company-row.ok .status {
+  color: var(--signal);
+}
+
+.company-row.broken .status {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.company-row.no-recipe .status,
+.company-row.no-recipe .company-name {
+  color: var(--muted);
+}
+
+.open {
+  font-variant-numeric: tabular-nums;
+}
+
+.careers {
+  text-align: right;
+}
+
 @media (max-width: 1100px) {
   #root {
     padding: 0 0.75rem;
@@ -318,8 +444,12 @@ a {
     padding: 0.75rem 0.5rem;
   }
 
+  .masthead {
+    flex-wrap: wrap;
+  }
+
   /* A bigger tap area without making the header taller */
-  .masthead > a {
+  .masthead nav a {
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
@@ -376,5 +506,44 @@ a {
     align-items: center;
     min-height: 2.75rem;
     padding: 0 0.625rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .company-columns {
+    display: none;
+  }
+
+  .company-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.125rem 0.75rem;
+    align-items: center;
+  }
+
+  .company-row .status,
+  .company-row .open {
+    grid-column: 1;
+    font-size: 0.875rem;
+  }
+
+  .company-row .careers {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+
+  .company-row .careers a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+
+  .request input,
+  .request button {
+    width: 100%;
+    height: 2.75rem;
+  }
+
+  .request label {
+    flex-basis: 100%;
   }
 }
