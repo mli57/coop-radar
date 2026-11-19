@@ -1,0 +1,22 @@
+name: Request a company
+description: Ask for a company's intern and co-op postings to be tracked.
+title: "Request: "
+labels: ["company request"]
+body:
+  - type: input
+    id: company
+    attributes:
+      label: Company name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Careers page URL
+      description: The page that lists the company's jobs, if you know it.
+      placeholder: https://
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything else, like which offices hire co-op students.
