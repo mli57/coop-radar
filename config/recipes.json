@@ -82,8 +82,9 @@
     "selector": "li.list-group-item"
   },
   "Ada": {
-    "type": "greenhouse",
-    "token": "ada18"
+    "type": "css",
+    "url": "https://job-boards.greenhouse.io/ada18",
+    "selector": ".job-alert"
   },
   "Super.com": {
     "type": "ashby",
