@@ -58,7 +58,7 @@ export function Companies({ companies }: Props) {
         {sorted.map((c) => (
           <li key={c.name} className={`company-row ${c.status}`} data-testid="company">
             <span className="company-name">{c.name}</span>
-            <span className="status">{STATUS_LABEL[c.status]}</span>
+            <span className="status">{STATUS_LABEL[c.status] ?? c.status}</span>
             <span className="open">
               {c.openCount}
               <span className="seen"> open</span>

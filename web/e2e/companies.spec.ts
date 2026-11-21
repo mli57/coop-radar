@@ -67,6 +67,18 @@ test("Request a company opens a filled-in GitHub issue", async ({ page }) => {
   expect(url.searchParams.get("title")).toBe("Request: Shopify");
 });
 
+test("a very long name wraps on a phone, and a status the site doesn't know still shows", async ({ page }) => {
+  const odd = [...COMPANIES, { ...COMPANIES[1], name: "A".repeat(300) }, { ...COMPANIES[1], name: "Paused Co", status: "paused" }];
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.route("**/data/postings.json", (route) => route.fulfill({ json: [] }));
+  await page.route("**/data/companies.json", (route) => route.fulfill({ json: odd }));
+  await page.goto("#companies");
+  await page.getByTestId("company").first().waitFor();
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+  await expect(rows(page).filter({ hasText: "Paused Co" }).locator(".status")).toHaveText("paused");
+});
+
 test("passes an accessibility scan and fits a phone", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 800 });
   await open(page);
