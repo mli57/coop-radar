@@ -1,0 +1,52 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+    paths: ["web/**", "data/**", ".github/workflows/deploy.yml"]
+  # Pushes made by the monitor run don't start other workflows, so redeploy when it finishes instead.
+  workflow_run:
+    workflows: [monitor]
+    types: [completed]
+  workflow_dispatch:
+
+# One deploy at a time; a newer one waits instead of cancelling a deploy halfway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write # required by deploy-pages
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main # build from the latest data, including the snapshot commit the monitor run just pushed
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+        working-directory: web
+
+      - run: npm run build # also copies data/postings.json and data/companies.json into the site
+        working-directory: web
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: web/dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
