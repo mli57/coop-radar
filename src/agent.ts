@@ -2,7 +2,7 @@
  * agent.ts: figures out how to scrape a new company (its "recipe"). Only used in bootstrap mode.
  *
  * 1. Opens the careers page in a headless browser.
- * 2. Looks for a known job board (Ashby, Greenhouse, Lever, Workday) in the page. If found, the recipe
+ * 2. Looks for a known job board (Ashby, Greenhouse, Lever, Workday, Eightfold) in the page. If found, the recipe
  *    uses that board's public API.
  * 3. If none is found, asks Gemini for a CSS selector and test-scrapes it, retrying once.
  *
@@ -70,6 +70,18 @@ async function detectAts(company: string, haystack: string): Promise<Recipe | nu
       if ((await scrapeCompany(company, recipe)).length > 0) return recipe;
     } catch {
       // matched token didn't resolve to a live board — keep looking
+    }
+  }
+
+  // Eightfold: the page loads its jobs from /api/pcsx on its own host (the first line of the haystack).
+  // The company's id there is its main domain, e.g. careers.qualcomm.com -> qualcomm.com.
+  if (/\/api\/pcsx|eightfold/i.test(haystack)) {
+    const host = new URL(haystack.split("\n")[0]!).hostname;
+    const recipe: Recipe = { type: "eightfold", host, domain: host.split(".").slice(-2).join(".") };
+    try {
+      if ((await scrapeCompany(company, recipe)).length > 0) return recipe;
+    } catch {
+      // not a working Eightfold site after all, keep looking
     }
   }
 

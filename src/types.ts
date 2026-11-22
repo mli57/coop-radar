@@ -17,7 +17,7 @@ export interface Posting {
   location?: string;
 }
 
-// Currently added 5 job boards picked by `type`. Each carries only the fields its board needs.
+// Currently added 6 job boards picked by `type`. Each carries only the fields its board needs.
 export type Recipe =
   // token is the company's ID in the board's URL: api.ashbyhq.com/posting-api/job-board/{token}
   | { type: "ashby" | "greenhouse" | "lever"; token: string }
@@ -31,7 +31,11 @@ export type Recipe =
 
   // subdomain is the {subdomain} in https://{subdomain}.recruitee.com
   // cityFilter narrows to specific office cities when the board mixes regions
-  | { type: "recruitee"; subdomain: string; cityFilter?: string[] };
+  | { type: "recruitee"; subdomain: string; cityFilter?: string[] }
+
+  // Eightfold career sites (Qualcomm): host is the careers site, domain is the company's id on it.
+  // https://{host}/api/pcsx/search?domain={domain}
+  | { type: "eightfold"; host: string; domain: string };
 
 // Only track intern/co-op roles for now, edit regex to change the scope later.
 // (\b after "op" keeps "co-op"/"coop" from matching "cooperative".)

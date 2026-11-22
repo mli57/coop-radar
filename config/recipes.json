@@ -72,9 +72,9 @@
     "token": "pinterest"
   },
   "Qualcomm Markham": {
-    "type": "css",
-    "url": "https://careers.qualcomm.com/careers?start=0&pid=446718849822&sort_by=timestamp",
-    "selector": "[data-test-id=\"job-listing\"]"
+    "type": "eightfold",
+    "host": "careers.qualcomm.com",
+    "domain": "qualcomm.com"
   },
   "Xanadu": {
     "type": "css",

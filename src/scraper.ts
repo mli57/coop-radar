@@ -165,6 +165,43 @@ async function scrapeRecruitee(company: string, subdomain: string, cityFilter?: 
     .map((o: any) => ({ company, title: o.title, url: o.careers_url, location: o.city }));
 }
 
+// Eightfold sites fill their job list in the browser from this search address, 10 jobs a page.
+// location=Canada keeps it to Canadian jobs; titles are checked in main.ts like every other board.
+// The site turns away fast repeat requests (429), so pages are spaced out and a 429 is retried once.
+const EIGHTFOLD_PAUSE_MS = 3_000;
+const EIGHTFOLD_RETRY_MS = 30_000;
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function scrapeEightfold(company: string, host: string, domain: string): Promise<Posting[]> {
+  const search = async (start: number) => {
+    const url = `https://${host}/api/pcsx/search?domain=${domain}&query=&location=Canada&start=${start}&sort_by=timestamp`;
+    let res = await fetch(url);
+    if (res.status === 429) {
+      await sleep(EIGHTFOLD_RETRY_MS);
+      res = await fetch(url);
+    }
+    if (!res.ok) throw new Error(`${url} returned ${res.status}`); // still limited: fail so the run keeps old data
+    return (await res.json()).data;
+  };
+
+  const found: Posting[] = [];
+  for (let start = 0; ; start += 10) {
+    if (start > 0) await sleep(EIGHTFOLD_PAUSE_MS);
+    const data = await search(start);
+    const page = data?.positions ?? [];
+    for (const job of page) {
+      found.push({
+        company,
+        title: job.name.trim(),
+        url: `https://${host}${job.positionUrl}`,
+        location: (job.locations ?? []).join("; ") || undefined,
+      });
+    }
+    if (page.length < 10 || start + 10 >= (data?.count ?? 0)) break;
+  }
+  return found;
+}
+
 // css recipe exists as the fallback for companies with no public ATS API.
 async function scrapeCss(company: string, url: string, selector: string): Promise<Posting[]> {
   const { chromium } = await import("playwright");
@@ -211,5 +248,7 @@ export async function scrapeCompany(company: string, recipe: Recipe): Promise<Po
       return scrapeWorkday(company, recipe.tenant, recipe.wdInstance, recipe.sites);
     case "recruitee":
       return scrapeRecruitee(company, recipe.subdomain, recipe.cityFilter);
+    case "eightfold":
+      return scrapeEightfold(company, recipe.host, recipe.domain);
   }
 }
