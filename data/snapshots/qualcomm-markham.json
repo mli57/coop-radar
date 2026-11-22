@@ -163,12 +163,6 @@
   },
   {
     "company": "Qualcomm Markham",
-    "title": "FY27 Intern - Low Power AI Software Development Internship - Canada (16 months)",
-    "url": "https://careers.qualcomm.com/careers/job/446721143440",
-    "location": "Markham, Ontario, Canada"
-  },
-  {
-    "company": "Qualcomm Markham",
     "title": "FY27 Intern - Machine Learning Compiler & Performance Engineering Intern - Canada (16 months)",
     "url": "https://careers.qualcomm.com/careers/job/446721064018",
     "location": "Markham, Ontario, Canada"
@@ -184,5 +178,11 @@
     "title": "FY27 Intern - Firmware/Embedded Software Engineering Internship - Canada (12 or 16 months)",
     "url": "https://careers.qualcomm.com/careers/job/446721141411",
     "location": "Toronto, Ontario, Canada"
+  },
+  {
+    "company": "Qualcomm Markham",
+    "title": "FY27 Intern - Low Power AI Software Development Internship - Canada (16 months)",
+    "url": "https://careers.qualcomm.com/careers/job/446721143440",
+    "location": "Markham, Ontario, Canada"
   }
 ]
