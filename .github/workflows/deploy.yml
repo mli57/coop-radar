@@ -21,12 +21,9 @@ permissions:
   id-token: write # required by deploy-pages
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,5 +45,15 @@ jobs:
         with:
           path: web/dist
 
+  # A separate job, as in GitHub's own Pages template: publishing in the same job as the upload
+  # sometimes can't find the upload yet ("No artifacts named github-pages").
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
