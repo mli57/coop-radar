@@ -372,9 +372,12 @@
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "Element Fleet Management": {
-    "type": "css",
-    "url": "https://elementfleet.wd3.myworkdayjobs.com/en-US/External_Career_Site",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
+    "type": "workday",
+    "tenant": "elementfleet",
+    "wdInstance": "wd3",
+    "sites": [
+      "External_Career_Site"
+    ]
   },
   "Ryan": {
     "type": "css",
