@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { TrackedPosting } from "../types.js";
-import { DEFAULT_FILTERS, applyFilters } from "./filter.js";
+import { DEFAULT_FILTERS, NOT_STATED, OTHER_PLACE, applyFilters } from "./filter.js";
 
 const posting = (id: string, over: Partial<TrackedPosting>): TrackedPosting => ({
   company: "Acme",
@@ -38,38 +38,64 @@ describe("applyFilters", () => {
     expect(ids({ query: "  DATA " })).toEqual(["remote"]);
     expect(ids({ query: "gamma" })).toEqual(["none"]);
   });
-  it("does not search location", () => {
-    expect(ids({ query: "toronto" })).toEqual([]);
+  it("searches location too", () => {
+    expect(ids({ query: "toronto" })).toEqual(["toronto"]);
+    expect(ids({ query: "san fran", canadaOnly: false })).toEqual(["sf"]);
   });
   it("filters by company", () => {
     expect(ids({ company: "Beta" })).toEqual(["remote"]);
   });
-  it("filters by place", () => {
-    expect(ids({ place: "Remote" })).toEqual(["remote"]);
-    expect(ids({ place: "Toronto" })).toEqual(["toronto"]);
-  });
-  it("matches part of a company or place as it's typed", () => {
+  it("matches part of a company as it's typed", () => {
     expect(ids({ company: "be" })).toEqual(["remote"]);
-    expect(ids({ place: "toro" })).toEqual(["toronto"]);
   });
-  it("finds places that aren't in the list once Canada only is off", () => {
-    expect(ids({ place: "san fran", canadaOnly: false })).toEqual(["sf"]);
+  it("filters by place, any of several", () => {
+    expect(ids({ places: ["Remote"] })).toEqual(["remote"]);
+    expect(ids({ places: ["Toronto"] })).toEqual(["toronto"]);
+    expect(ids({ places: ["Toronto", "Remote"] })).toEqual(["toronto", "remote"]);
   });
-  it("ignores accents when matching a place", () => {
+  it("matches a place with or without accents in the posting", () => {
     const montreal = [posting("mtl", { location: "Montréal, QC" })];
-    expect(applyFilters(montreal, { ...DEFAULT_FILTERS, place: "Montreal" }).map((p) => p.id)).toEqual(["mtl"]);
+    expect(applyFilters(montreal, { ...DEFAULT_FILTERS, places: ["Montreal"] }).map((p) => p.id)).toEqual(["mtl"]);
   });
   it("hides postings with no location when a place is chosen", () => {
-    expect(ids({ place: "o" })).not.toContain("none");
+    expect(ids({ places: ["Toronto", "Remote"] })).not.toContain("none");
+  });
+  it("finds postings with no location through Not stated, alone or with a place", () => {
+    expect(ids({ places: [NOT_STATED] })).toEqual(["none"]);
+    expect(ids({ places: ["Toronto", NOT_STATED] })).toEqual(["toronto", "none"]);
+  });
+  it("treats a location of only spaces as not stated", () => {
+    const blank = [posting("blank", { location: "   " })];
+    expect(applyFilters(blank, { ...DEFAULT_FILTERS, canadaOnly: false, places: [NOT_STATED] }).map((p) => p.id)).toEqual(["blank"]);
+  });
+  it("finds a location with no city button through Other", () => {
+    expect(ids({ places: [OTHER_PLACE], canadaOnly: false })).toEqual(["sf"]);
+    const ontario = [posting("on", { location: "Ontario, Canada" })];
+    expect(applyFilters(ontario, { ...DEFAULT_FILTERS, places: [OTHER_PLACE] }).map((p) => p.id)).toEqual(["on"]);
   });
   it("filters by field", () => {
-    expect(ids({ field: "Software" })).toEqual(["toronto"]);
-    expect(ids({ field: "Data" })).toEqual(["remote"]);
+    expect(ids({ fields: ["Software"] })).toEqual(["toronto"]);
+    expect(ids({ fields: ["Data"] })).toEqual(["remote"]);
+  });
+  it("shows any of several picked fields", () => {
+    expect(ids({ fields: ["Software", "Data"] })).toEqual(["toronto", "remote"]);
   });
   it("hides postings with no detected term when a term is chosen", () => {
-    expect(ids({ term: "Winter 2027" })).toEqual(["toronto"]);
+    expect(ids({ terms: ["Winter 2027"] })).toEqual(["toronto"]);
+  });
+  it("finds postings with no term through Not stated, alone or with a term", () => {
+    expect(ids({ terms: [NOT_STATED] })).toEqual(["remote", "none"]);
+    expect(ids({ terms: ["Winter 2027", NOT_STATED] })).toEqual(["toronto", "remote", "none"]);
+  });
+  it("needs a match in every row of buttons", () => {
+    expect(ids({ fields: ["Software", "Data"], terms: [NOT_STATED] })).toEqual(["remote"]);
+  });
+  it("can leave one row of buttons out, for counting", () => {
+    const filters = { ...DEFAULT_FILTERS, fields: ["Data"], terms: ["Winter 2027"] };
+    expect(applyFilters(all, filters, "fields").map((p) => p.id)).toEqual(["toronto"]);
+    expect(applyFilters(all, filters, "terms").map((p) => p.id)).toEqual(["remote"]);
   });
   it("combines filters", () => {
-    expect(ids({ company: "Beta", canadaOnly: false, query: "intern", place: "Remote" })).toEqual(["remote"]);
+    expect(ids({ company: "Beta", canadaOnly: false, query: "intern", places: ["Remote"] })).toEqual(["remote"]);
   });
 });

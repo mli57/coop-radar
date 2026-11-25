@@ -49,6 +49,8 @@ async function open(page: Page, lastVisit?: string) {
 const rows = (page: Page) => page.getByTestId("posting");
 const row = (page: Page, name: string) => rows(page).filter({ hasText: name });
 const heads = (page: Page) => page.locator(".group h2").allTextContents();
+const choice = (page: Page, rowName: string, name: string) =>
+  page.getByRole("group", { name: rowName }).getByRole("button", { name: new RegExp(`^${name} \\+?\\d+$`) });
 
 test("groups by day, newest first, baseline at the bottom", async ({ page }) => {
   await open(page);
@@ -73,13 +75,16 @@ test("baseline postings show no age", async ({ page }) => {
   await expect(row(page, "Baseline").locator(".age")).toHaveText("");
 });
 
-test("search matches title and company", async ({ page }) => {
+test("search matches title, company and location", async ({ page }) => {
   await open(page);
   await page.getByRole("searchbox").fill("yesterday");
   await expect(rows(page)).toHaveCount(1);
   await page.getByRole("searchbox").fill("delta");
   await expect(rows(page)).toHaveCount(1);
   await expect(rows(page)).toContainText("Unknown Intern");
+  await page.getByRole("searchbox").fill("waterloo");
+  await expect(rows(page)).toHaveCount(1);
+  await expect(rows(page)).toContainText("Older Data Intern");
 });
 
 test("Canada is the default, no-location stays visible, and the toggle shows everything", async ({ page }) => {
@@ -101,22 +106,134 @@ test("company, location and term filters work", async ({ page }) => {
   await page.getByRole("button", { name: "Clear Company" }).click();
   await expect(rows(page)).toHaveCount(5);
 
-  const location = page.getByRole("combobox", { name: "Location" });
-  await location.fill("Rem");
-  await expect(page.getByRole("listbox").getByRole("option")).toHaveText(["Remote"]);
+  // Remote first, then places with the most postings, Not stated last
+  await expect(page.getByRole("group", { name: "Location" }).getByRole("button")).toHaveText(["Remote 1", "Toronto 2", "Ottawa 1", "Waterloo 1", "Not stated 1"]);
+  await choice(page, "Location", "Not stated").click();
+  await expect(rows(page)).toHaveCount(1);
+  await expect(rows(page)).toContainText("Unknown Intern");
+  await choice(page, "Location", "Not stated").click();
+  await choice(page, "Location", "Remote").click();
+  await expect(rows(page)).toHaveCount(1);
   await expect(rows(page)).toContainText("Yesterday Intern");
-  await location.fill("Waterloo");
-  await expect(rows(page)).toContainText("Older Data Intern");
-  await page.getByRole("button", { name: "Clear Location" }).click();
+  await choice(page, "Location", "Waterloo").click();
+  await expect(rows(page)).toHaveCount(2);
+  await expect(rows(page)).toContainText(["Yesterday Intern", "Older Data Intern"]);
+  await choice(page, "Location", "Remote").click();
+  await choice(page, "Location", "Waterloo").click();
 
-  await page.getByLabel("Field", { exact: true }).selectOption("Data");
+  await choice(page, "Field", "Data").click();
   await expect(rows(page)).toHaveCount(1);
   await expect(rows(page)).toContainText("Older Data Intern");
-  await page.getByLabel("Field", { exact: true }).selectOption("");
+  await choice(page, "Field", "Data").click();
 
-  await page.getByLabel("Term").selectOption("Winter 2027");
+  await choice(page, "Term", "Winter 2027").click();
   await expect(rows(page)).toHaveCount(1);
   await expect(rows(page)).toContainText("Today Intern");
+});
+
+test("Field and Term are buttons that stay visible, switch on and off, and combine", async ({ page }) => {
+  await open(page);
+  // Each button counts what it would show; Other covers the titles with no known field
+  await expect(choice(page, "Field", "Data")).toHaveText("Data 1");
+  await expect(choice(page, "Field", "Other")).toHaveText("Other 4");
+  await expect(choice(page, "Term", "Not stated")).toHaveText("Not stated 3");
+
+  await choice(page, "Field", "Data").click();
+  await expect(choice(page, "Field", "Data")).toHaveAttribute("aria-pressed", "true");
+  await expect(choice(page, "Field", "Other")).toHaveText("Other +4"); // would add 4 to the list
+  await choice(page, "Field", "Other").click();
+  await expect(rows(page)).toHaveCount(5); // any of the picked fields
+
+  // Term counts follow the picked fields, and a term with nothing left is greyed out
+  await choice(page, "Term", "Winter 2027").click();
+  await expect(rows(page)).toHaveCount(1);
+  await expect(choice(page, "Field", "Data")).toHaveText("Data 0");
+  await choice(page, "Term", "Not stated").click();
+  await expect(rows(page)).toHaveCount(4); // Winter 2027 or no term, among Data and Other
+
+  await choice(page, "Term", "Winter 2027").click();
+  await choice(page, "Term", "Not stated").click();
+  await choice(page, "Field", "Data").click();
+  await choice(page, "Field", "Other").click();
+  await expect(rows(page)).toHaveCount(5);
+  await expect(page.locator(".choice[aria-pressed=true]")).toHaveCount(0);
+});
+
+test("clicking the same spot twice switches a button on and back off", async ({ page }) => {
+  await open(page);
+  // Waterloo is last, so it would move most if the buttons before it got wider
+  const box = (await choice(page, "Location", "Waterloo").boundingBox())!;
+  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+  await expect(choice(page, "Location", "Waterloo")).toHaveAttribute("aria-pressed", "true");
+  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+  await expect(page.locator(".choice[aria-pressed=true]")).toHaveCount(0);
+  await expect(rows(page)).toHaveCount(5);
+});
+
+test("Clear filters shows once something is picked and resets everything", async ({ page }) => {
+  await open(page);
+  const clear = page.locator(".toggles").getByRole("button", { name: "Clear filters" });
+  await expect(clear).toHaveCount(0);
+  await choice(page, "Field", "Data").click();
+  await expect(clear).toBeVisible();
+  await expect(choice(page, "Field", "Other")).toHaveAttribute("title", "Adds 4 to the list");
+  await page.getByLabel("Show closed").check();
+  await clear.click();
+  await expect(rows(page)).toHaveCount(5);
+  await expect(page.getByLabel("Show closed")).not.toBeChecked();
+  await expect(clear).toHaveCount(0);
+  await expect(page.getByRole("searchbox")).toBeFocused();
+});
+
+test("a posting in two places isn't counted again in the other place's +N", async ({ page }) => {
+  await open(page);
+  await choice(page, "Location", "Waterloo").click();
+  // the only Ottawa posting is the Waterloo one already on the list, but Ottawa can still be picked
+  await expect(choice(page, "Location", "Ottawa")).toHaveText("Ottawa +0");
+  await expect(choice(page, "Location", "Ottawa")).toHaveAttribute("aria-disabled", "false");
+  await expect(choice(page, "Location", "Ottawa")).toHaveClass(/adds-nothing/);
+  // it still works, so it has to stay readable
+  const { violations } = await new AxeBuilder({ page }).analyze();
+  expect(violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target).join(", ")}`)).toEqual([]);
+  await expect(choice(page, "Location", "Toronto")).toHaveText("Toronto +2");
+  await choice(page, "Location", "Ottawa").click();
+  await choice(page, "Location", "Waterloo").click();
+  await expect(rows(page)).toHaveCount(1);
+  await expect(rows(page)).toContainText("Older Data Intern");
+});
+
+test("buttons only offer choices the checkboxes let through", async ({ page }) => {
+  const gone = make("Gone", { title: "Gone Intern - Fall 2026", closedAt: "2026-11-09T14:00:00.000Z" });
+  await page.clock.setFixedTime(NOW);
+  await page.route("**/data/postings.json", (route) => route.fulfill({ json: [...POSTINGS, gone] }));
+  await page.route("**/data/companies.json", (route) => route.fulfill({ json: COMPANIES }));
+  await page.goto("");
+  await rows(page).first().waitFor();
+  await expect(page.getByRole("group", { name: "Term" }).getByRole("button")).toHaveText(["Winter 2027 1", "Summer 2027 1", "Not stated 3"]);
+  await page.getByLabel("Show closed").check();
+  await expect(choice(page, "Term", "Fall 2026")).toHaveText("Fall 2026 1");
+  await choice(page, "Term", "Fall 2026").click();
+  await page.getByLabel("Show closed").uncheck();
+  // still there while picked, so it can be switched off
+  await expect(choice(page, "Term", "Fall 2026")).toHaveAttribute("aria-pressed", "true");
+  await choice(page, "Term", "Fall 2026").click();
+  await expect(choice(page, "Term", "Fall 2026")).toHaveCount(0);
+});
+
+test("a button with nothing to show is greyed out but a picked one can always be switched off", async ({ page }) => {
+  await open(page);
+  await choice(page, "Term", "Summer 2027").click();
+  await expect(choice(page, "Field", "Data")).toHaveAttribute("aria-disabled", "true");
+  await choice(page, "Field", "Data").dispatchEvent("click"); // does nothing
+  await expect(choice(page, "Field", "Data")).toHaveAttribute("aria-pressed", "false");
+  await page.getByRole("searchbox").fill("nothing matches this");
+  await expect(choice(page, "Term", "Summer 2027")).toHaveText("Summer 2027 0");
+  await expect(choice(page, "Term", "Summer 2027")).toHaveAttribute("aria-disabled", "false");
+  // switched off by keyboard, it greys out but keeps focus
+  await choice(page, "Term", "Summer 2027").focus();
+  await page.keyboard.press("Space");
+  await expect(choice(page, "Term", "Summer 2027")).toHaveAttribute("aria-pressed", "false");
+  await expect(choice(page, "Term", "Summer 2027")).toBeFocused();
 });
 
 test("each row shows its field", async ({ page }) => {
@@ -125,10 +242,10 @@ test("each row shows its field", async ({ page }) => {
   await expect(row(page, "Today Intern").locator(".field")).toHaveText("Other");
 });
 
-test("Location search finds places not in the list once Canada only is off", async ({ page }) => {
+test("the search box finds places that have no button once Canada only is off", async ({ page }) => {
   await open(page);
   await page.getByLabel("Canada and remote only").uncheck();
-  await page.getByRole("combobox", { name: "Location" }).fill("san fran");
+  await page.getByRole("searchbox").fill("san fran");
   await expect(rows(page)).toHaveCount(1);
   await expect(rows(page)).toContainText("American Intern");
 });
