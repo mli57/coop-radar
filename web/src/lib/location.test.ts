@@ -72,6 +72,7 @@ describe("showsInCanadaView", () => {
   it("keeps postings with no location", () => {
     expect(showsInCanadaView(undefined)).toBe(true);
     expect(showsInCanadaView("")).toBe(true);
+    expect(showsInCanadaView("  \n\t")).toBe(true);
   });
 
   it.each(["Remote", "remote", "Remote - Global", "Hybrid; Remote", "London; Remote"])("shows %s", (location) => {

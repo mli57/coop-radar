@@ -45,7 +45,7 @@ function isRemoteAnywhere(part: string): boolean {
 
 // Postings with no location stay visible, as R4 asks.
 export function showsInCanadaView(location: string | undefined): boolean {
-  if (!location) return true;
+  if (!location?.trim()) return true;
   return isCanadian(location) || location.split(/[;•|]/).some(isRemoteAnywhere);
 }
 
