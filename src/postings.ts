@@ -67,6 +67,14 @@ export function updateCompany(
   return result;
 }
 
+// Drops postings from companies no longer in companies.yaml. Nothing scrapes them any more, so
+// their open postings would stay "open" forever. main.ts deletes their snapshots at the same time
+// (deleteUnlistedSnapshots), or a company added back would have everything on its board count as new.
+export function keepListed(history: TrackedPosting[], companies: string[]): TrackedPosting[] {
+  const listed = new Set(companies);
+  return history.filter((p) => listed.has(p.company));
+}
+
 export function pruneClosed(history: TrackedPosting[], now: Date): TrackedPosting[] {
   return history.filter((p) => !p.closedAt || now.getTime() - Date.parse(p.closedAt) < 30 * DAY_MS);
 }

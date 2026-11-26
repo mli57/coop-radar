@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { postingId, pruneClosed, updateCompany, type TrackedPosting } from "./postings.js";
+import { keepListed, postingId, pruneClosed, updateCompany, type TrackedPosting } from "./postings.js";
 import type { Posting } from "./types.js";
 
 const day = (n: number) => new Date(Date.UTC(2026, 10, 1 + n));
@@ -85,6 +85,15 @@ describe("updateCompany", () => {
   it("does not add the same posting twice if a board lists it twice", () => {
     const h = runs([job("a"), job("a")]);
     expect(h).toHaveLength(1);
+  });
+});
+
+describe("keepListed", () => {
+  it("drops every posting from a company that's no longer listed, open or closed", () => {
+    const acme = runs([job("open"), job("closed")], [job("open")]);
+    const h = updateCompany(acme, "Globex", [job("x", "Globex")], true, day(2));
+    expect(keepListed(h, ["Globex"]).map((p) => p.company)).toEqual(["Globex"]);
+    expect(keepListed(h, ["Acme", "Globex"])).toEqual(h);
   });
 });
 

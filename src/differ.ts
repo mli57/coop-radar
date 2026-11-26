@@ -12,7 +12,7 @@
  * Called by monitorCompany() in main.ts, once per company per run.
  */
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises";
 import type { Posting } from "./types.js";
 
 // path contains each company's job postings
@@ -49,6 +49,16 @@ export async function loadSnapshot(company: string): Promise<Posting[] | null> {
 export async function saveSnapshot(company: string, postings: Posting[]): Promise<void> {
   await mkdir(SNAPSHOT_DIR, { recursive: true });
   await writeFile(snapshotPath(company), JSON.stringify(postings, null, 2));
+}
+
+// Deletes the snapshots of companies no longer in companies.yaml. A company added back later then
+// starts as a first run (all baseline), instead of everything on its board counting as new.
+export async function deleteUnlistedSnapshots(companies: string[]): Promise<void> {
+  const listed = new Set(companies.map(snapshotPath));
+  for (const file of await readdir(SNAPSHOT_DIR)) {
+    const path = `${SNAPSHOT_DIR}/${file}`;
+    if (file.endsWith(".json") && !listed.has(path)) await unlink(path);
+  }
 }
 
 // Compare the newest scraped posting with the old snapshot, returns postings that weren't on the snapshot.

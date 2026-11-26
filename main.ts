@@ -2,11 +2,11 @@ import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { parse } from "yaml";
 import { bootstrapCompany } from "./src/agent.js";
-import { diff, loadSnapshot, saveSnapshot } from "./src/differ.js";
+import { deleteUnlistedSnapshots, diff, loadSnapshot, saveSnapshot } from "./src/differ.js";
 import { sendAlert, sendBrief } from "./src/notifier.js";
-import { pruneClosed, updateCompany, type TrackedPosting } from "./src/postings.js";
+import { keepListed, pruneClosed, updateCompany, type TrackedPosting } from "./src/postings.js";
 import { loadRecipes, scrapeCompany } from "./src/scraper.js";
-import { RELEVANT_TITLE, type Posting, type Recipe } from "./src/types.js";
+import { PART_TIME, RELEVANT_TITLE, type Posting, type Recipe } from "./src/types.js";
 
 if (existsSync(".env")) process.loadEnvFile(".env");
 
@@ -66,7 +66,7 @@ async function monitorCompany(
 
   // Filter AFTER the empty-board health check above: a board full of senior
   // roles and zero intern roles is healthy, not broken.
-  current = current.filter((p) => RELEVANT_TITLE.test(p.title));
+  current = current.filter((p) => RELEVANT_TITLE.test(p.title) && !PART_TIME.test(p.title));
 
   const previous = await loadSnapshot(company.name);
   await saveSnapshot(company.name, current);
@@ -110,8 +110,11 @@ async function saveHistory(
     const r = results.get(c.name);
     if (r) history = updateCompany(history, c.name, r.current, r.firstRun, now);
   }
-  history = pruneClosed(history, now);
+  const names = companies.map((c) => c.name);
+  // Titles the part-time rule now skips are dropped too, rather than showing as closed for 30 days.
+  history = pruneClosed(keepListed(history, names), now).filter((p) => !PART_TIME.test(p.title));
   await writeFile(POSTINGS_FILE, JSON.stringify(history, null, 2));
+  await deleteUnlistedSnapshots(names);
 
   const status = companies.map((c) => ({
     name: c.name,

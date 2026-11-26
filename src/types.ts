@@ -40,3 +40,6 @@ export type Recipe =
 // Only track intern/co-op roles for now, edit regex to change the scope later.
 // (\b after "op" keeps "co-op"/"coop" from matching "cooperative".)
 export const RELEVANT_TITLE = /\bintern(ship)?s?\b|\bco-?op\b|\bstudent\b/i;
+
+// Part-time student jobs are store and shift work (Loblaw's pizza and pharmacy roles), not co-ops.
+export const PART_TIME = /\bpart[- ]?time\b/i;
