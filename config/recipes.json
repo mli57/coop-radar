@@ -251,11 +251,6 @@
     "url": "https://lumentum.wd5.myworkdayjobs.com/en-US/LITE",
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
-  "Analog Devices": {
-    "type": "css",
-    "url": "https://analogdevices.wd1.myworkdayjobs.com/en-US/External",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
-  },
   "Intel": {
     "type": "css",
     "url": "https://intel.wd1.myworkdayjobs.com/en-US/external",
@@ -281,26 +276,6 @@
     "url": "https://bird.wd3.myworkdayjobs.com/en-US/BirdConstructionCareers",
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
-  "Brookfield": {
-    "type": "css",
-    "url": "https://brookfield.wd5.myworkdayjobs.com/en-US/brookfield",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
-  },
-  "Danaher": {
-    "type": "css",
-    "url": "https://danaher.wd1.myworkdayjobs.com/en-US/DanaherJobs",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
-  },
-  "Entrust": {
-    "type": "css",
-    "url": "https://entrust.wd1.myworkdayjobs.com/en-US/entrustcareers",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
-  },
-  "Teledyne FLIR": {
-    "type": "css",
-    "url": "https://flir.wd1.myworkdayjobs.com/en-US/flircareers",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
-  },
   "Foresters Financial": {
     "type": "css",
     "url": "https://foresters.wd3.myworkdayjobs.com/en-US/ForestersFinancialCareers",
@@ -309,11 +284,6 @@
   "McKesson": {
     "type": "css",
     "url": "https://mckesson.wd3.myworkdayjobs.com/en-US/External_Careers",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
-  },
-  "Siemens Healthineers": {
-    "type": "css",
-    "url": "https://onehealthineers.wd3.myworkdayjobs.com/en-US/SHSJB",
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "PSP Investments": {
@@ -329,11 +299,6 @@
   "Thales": {
     "type": "css",
     "url": "https://thales.wd3.myworkdayjobs.com/en-US/Careers",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
-  },
-  "Citi": {
-    "type": "css",
-    "url": "https://citi.wd5.myworkdayjobs.com/en-US/2",
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "MLSE": {
@@ -379,11 +344,6 @@
   "Ryan": {
     "type": "css",
     "url": "https://ryan.wd1.myworkdayjobs.com/en-US/RyanCareers",
-    "selector": "a[data-automation-id=\"jobTitle\"]"
-  },
-  "University of Ottawa": {
-    "type": "css",
-    "url": "https://uottawa.wd3.myworkdayjobs.com/en-US/uOttawa_External_Career_Site",
     "selector": "a[data-automation-id=\"jobTitle\"]"
   },
   "OLG": {
